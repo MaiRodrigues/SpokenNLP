@@ -1,4 +1,4 @@
-# Projeto: Segmentação textual automática baseada em tópicos
+# Projeto: Segmentação textual automática
 
 Residência Tecnológica em 2023
 
