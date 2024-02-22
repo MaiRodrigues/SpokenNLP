@@ -2,7 +2,7 @@
 import re
 import os
 
-input_folder = '/content/drive/MyDrive/project_folder/en_disease_val/text' 
+input_folder = 'dir' 
 
 
 # palavras em ingles comuns
@@ -37,7 +37,7 @@ print("Numero total de arquivos:", total_files)
 print("Numero total de arquivos em inglês:", len(matching_files))
 
 #REMOVE ARQUIVOS EM INGLES DAS 3 PASTAS
-input_folder = '/content/drive/MyDrive/project_folder/en_disease_val'
+input_folder = 'dir'
 matching_files = matching_files
 
 removed_files = []
