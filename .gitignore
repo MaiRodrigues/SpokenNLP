@@ -3,3 +3,4 @@ test
 train
 val
 **/dir
+.env
