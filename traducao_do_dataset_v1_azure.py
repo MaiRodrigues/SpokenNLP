@@ -52,7 +52,7 @@ for root, dir, files in os.walk(input_location):
             
             if(isinstance(api_response, list)):
                 # salva os novos arquivos traduzidos em outra pasta
-                with open(os.path.join(output_location, new_file), 'w') as f:
+                with open(os.path.join(output_location, new_file), 'w', encoding="utf-8") as f:
                     f.write(str(api_response[0]["translations"][0]["text"]))
                     
             else:
@@ -62,6 +62,6 @@ for root, dir, files in os.walk(input_location):
             order += 1
             
             # Rate limit
-            if (order % 4 == 0):
-                time.sleep(10)
+            if (order % 2 == 0):
+                time.sleep(30)
                     
