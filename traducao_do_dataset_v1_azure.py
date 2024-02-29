@@ -28,6 +28,8 @@ headers = {
     "X-ClientTraceId": str(uuid.uuid4())
 }
 
+number_files: int = 0
+
 
 for root, dir, files in os.walk(input_location):
     for file in files:
@@ -38,13 +40,18 @@ for root, dir, files in os.walk(input_location):
             with open(os.path.join(root, file), 'r') as f:
                 file_contents = f.read()
                 
-            body = {
+            body = [{
                 "text": file_contents
-            }    
+            }]
 
+            print("Oi")
             # traduz os arquivos
-            api_response = requests.post(endpoint + "/translate", params=params, headers=headers, json=body).json()
+            request = requests.post(endpoint + "/translate", params=params, headers=headers, json=body)
+            response = request.json()
 
+            print("Tchau")
+            number_files +=1
+            print("Arquivos traduzidos: ", number_files)
             # salva os novos arquivos traduzidos em outra pasta
             with open(os.path.join(output_location, new_file), 'w') as f:
                 f.write(api_response.text)
