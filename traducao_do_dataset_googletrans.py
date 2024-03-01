@@ -29,13 +29,11 @@ for root, dir, files in os.walk(input_location):
 
 # INCLUI O ' ' NOVAMENTE NA MARCAÇÃO DOS RÓTULOS 
 
-directory = 'diretorio'
-
-for filename in os.listdir(directory):
-    if filename.endswith(".txt"):  # Process only text files
-        filepath = os.path.join(directory, filename)
-        temp_filepath = os.path.join(directory, "temp_" + filename)
+for filename in os.listdir(output_location):
+    if filename.endswith(".txt"):
+        filepath = os.path.join(output_location, filename)
+        temp_filepath = os.path.join(output_location, "temp_" + filename)
         with open(filepath, 'r', encoding='utf-8') as infile, open(temp_filepath, 'w', encoding='utf-8') as outfile:
             for line in infile:
                 outfile.write(line.replace(';', ' ;'))
-        shutil.move(temp_filepath, filepath)  # Replace the original file with the edited version
+        shutil.move(temp_filepath, filepath)
