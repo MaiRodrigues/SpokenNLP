@@ -2,7 +2,7 @@
 
 The official repository of our EMNLP 2023 paper "**Improving Long Document Topic Segmentation Models With Enhanced Coherence Modeling**".
 
-Article: https://arxiv.org/pdf/2310.11772v3.pdf
+Paper: https://arxiv.org/pdf/2310.11772v3.pdf
 
 # Environment
 
