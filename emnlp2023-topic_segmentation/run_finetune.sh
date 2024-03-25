@@ -1,5 +1,5 @@
 export CUDA_VISIBLE_DEVICES=0,1
-NUM_GPU=2
+NUM_GPU=1
 echo $CUDA_VISIBLE_DEVICES
 echo $NUM_GPU
 
@@ -18,7 +18,7 @@ max_seq_length=2048
 # model_name=bigbird_base
 model_name=longformer_base
 
-dataset=wiki_section
+#dataset=wiki_section
 dataset=wiki_section_disease
 # dataset=wiki727k
 
