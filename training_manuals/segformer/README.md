@@ -57,3 +57,21 @@ Para executar o treinamento do modelo:
 | output_dir | Diretório de saída do modelo |
 | model_type | Tipo do modelo (*e.g*: **bert**) |
 | model_name_or_path | Nome ou caminho do modelo (*e.g*: **bert_base_uncased**) |
+| do_train | Realizar treinamento (caso apenas passado, assume valor padrão **True**) |
+| do_eval | Realizar avaliação sobre o conjunto de avaliação (caso apenas passado, assume valor padrão **True**) |
+| evaluate_during_training | Realizar processos de treinamento e avaliação simultaneamente |
+| train_data_file | Nome e caminho do arquivo no qual será salvo os *checkpoints* de treinamento |
+| eval_data_file | Nome e caminho do arquivo no qual será salvo os *checkpoints* de teste |
+| block_size | Tamanho do bloco de entrada do *BERT* |
+| num_train_epochs | Número de épocas de treinamento |
+| warmup_steps | Número de passos de aquecimento |
+| logging_steps | Intervalo (medido em passos) para cada *log* no console |
+| save_steps | Número de passos de salvamento de *checkpoints* |
+| per_device_train_batch_size | Tamanho do lote de treinamento por dispositivo (no caso, por processador) |
+| gradient_accumulation_steps | Número de passos de acumulação de gradiente |
+| evaluation_strategy | Estratégia de avaliação (se o valor for *step*, por exemplo, a avaliação é realizada a cada passo) |
+| per_device_train_batch_size | Tamanho do lote de avaliação por dispositivo (no caso, por processador) |
+| label_num | Número total de rótulos de tópicos existentes no *dataset* |
+| line_by_line | Indica se cada linha do documento deve ser considerada como uma sequência distinta. Se passado, assume valor **True** por padrão |
+| overwrite_output_dir | Indica se o conteúdo do diretório de saída deve ser sobrescrito a cada ponto de controle. Se passado, assume valor **True** por padrão |
+| save_total_limit | Limite de *checkpoints* no diretório de saída |
