@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 
-def extract_dataframe(path: str) -> list[dict]:
-    xtree = ET.parse(path)
+def extract_dataframe(content: str) -> list[dict]:
+    xtree = ET.ElementTree(ET.fromstring(content))
     xroot = xtree.getroot()
 
     doc_list: list[dict] = []
@@ -22,3 +22,4 @@ def extract_dataframe(path: str) -> list[dict]:
                 doc_list.append(document)
                 
     return doc_list
+
