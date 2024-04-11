@@ -71,7 +71,7 @@ Caso seja necessário utilizar modelos pré-treinados, descarregue-os e insira-o
 - **bert_base**: https://huggingface.co/bert-base-uncased/;
 - **electra_base**: https://huggingface.co/google/electra-base-discriminator;
 
-Estes quatro modelos estão disponíveis em **HuggingFace**. Para utilização no treinamento deste, ao abrir a respectiva página do modelo, vá até a seção **Files** e descarregue o arquivo com extensão **.bin**.
+Estes quatro modelos estão disponíveis em **HuggingFace**. Para utilização no treinamento deste, ao abrir a respectiva página do modelo, vá até a seção **Files and Versions** e descarregue o arquivo denominado **pytorch_model.bin**.
 
 ## Treinamento
 
@@ -108,7 +108,5 @@ Os possíveis parâmetros de configuração da execução do teste são:
 - **dataset_name**: nome do *dataset*;
 - **num_gpu**: número de processadores de GPU para executar paralelamente o treinamento;
 - **gradient_checkpoing**: booleano para indiciar se os *checkpoints do gradiente descendente devem ser salvos;
-- **learning_rate**: *learning rate* do treinamento;
-- **num_train_epochs**: número de épocas de treinamento;
 
 
