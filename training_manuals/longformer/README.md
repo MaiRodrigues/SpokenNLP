@@ -82,6 +82,16 @@ Para executar o treinamento do modelo, execute o *script* **run_finetune.sh**, m
 ./run_finetune.sh
 ```
 
+Os possíveis parâmetros de configuração da execução do treinamento são:
+
+- **metric_name**: nome da métrica. Pode-se modificar para quaisquer uma delas disponíves em `./src/metrics/`
+- **ma_seq_length**: comprimento máximo de sequência analisado pelo modelo;
+- **dataset_name**: nome do *dataset*;
+- **num_gpu**: número de processadores de GPU para executar paralelamente o treinamento;
+- **gradient_checkpoing**: booleano para indiciar se os *checkpoints do gradiente descendente devem ser salvos;
+- **learning_rate**: *learning rate* do treinamento;
+- **num_train_epochs**: número de épocas de treinamento;
+
 ## Teste
 
 Para executar o treinamento do modelo, execute o *script* **run_inference.sh**, modificando alguns de seus parâmetros, como **model_name** e **max_seq_length**, por exemplo:
@@ -90,4 +100,15 @@ Para executar o treinamento do modelo, execute o *script* **run_inference.sh**, 
 ```bash
 ./run_inference.sh
 ```
+
+Os possíveis parâmetros de configuração da execução do teste são:
+
+- **metric_name**: nome da métrica. Pode-se modificar para quaisquer uma delas disponíves em `./src/metrics/`
+- **ma_seq_length**: comprimento máximo de sequência analisado pelo modelo;
+- **dataset_name**: nome do *dataset*;
+- **num_gpu**: número de processadores de GPU para executar paralelamente o treinamento;
+- **gradient_checkpoing**: booleano para indiciar se os *checkpoints do gradiente descendente devem ser salvos;
+- **learning_rate**: *learning rate* do treinamento;
+- **num_train_epochs**: número de épocas de treinamento;
+
 
