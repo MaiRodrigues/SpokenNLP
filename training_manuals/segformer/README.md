@@ -57,3 +57,63 @@ Para executar o treinamento do modelo:
 | output_dir | Diretório de saída do modelo |
 | model_type | Tipo do modelo (*e.g*: **bert**) |
 | model_name_or_path | Nome ou caminho do modelo (*e.g*: **bert_base_uncased**) |
+| do_train | Realizar treinamento (caso apenas passado, assume valor padrão **True**) |
+| do_eval | Realizar avaliação sobre o conjunto de avaliação (caso apenas passado, assume valor padrão **True**) |
+| evaluate_during_training | Realizar processos de treinamento e avaliação simultaneamente |
+| train_data_file | Nome e caminho do arquivo no qual será salvo os *checkpoints* de treinamento |
+| eval_data_file | Nome e caminho do arquivo no qual será salvo os *checkpoints* de teste |
+| block_size | Tamanho do bloco de entrada do *BERT* |
+| num_train_epochs | Número de épocas de treinamento |
+| warmup_steps | Número de passos de aquecimento |
+| logging_steps | Intervalo (medido em passos) para cada *log* no console |
+| save_steps | Número de passos de salvamento de *checkpoints* |
+| per_device_train_batch_size | Tamanho do lote de treinamento por dispositivo (no caso, por processador) |
+| gradient_accumulation_steps | Número de passos de acumulação de gradiente |
+| evaluation_strategy | Estratégia de avaliação (se o valor for *step*, por exemplo, a avaliação é realizada a cada passo) |
+| per_device_train_batch_size | Tamanho do lote de avaliação por dispositivo (no caso, por processador) |
+| label_num | Número total de rótulos de tópicos existentes no *dataset* |
+| line_by_line | Indica se cada linha do documento deve ser considerada como uma sequência distinta. Se passado, assume valor **True** por padrão |
+| overwrite_output_dir | Indica se o conteúdo do diretório de saída deve ser sobrescrito a cada ponto de controle. Se passado, assume valor **True** por padrão |
+| save_total_limit | Limite de *checkpoints* no diretório de saída |
+| per_device_eval_batch_size | Tamanho do lote de treinamento por dispositivo (no caso, por processador) |
+
+Segue um exemplo de comando para treinar o modelo utilizando o *dataset* de doenças em Língua Inglesa:
+
+```bash
+python -m torch.distributed.launch --nproc_per_node=4 run_language_modeling.py --output_dir=dir/ --model_type=bert --model_name_or_path=bert-base-uncased --do_train --do_eval --evaluate_during_training --train_data_file=train_file_name/ --eval_data_file=test_file_name/ --line_by_line --block_size 48 --num_train_epochs 20 --learning_rate 1e-5 --warmup_steps 100 --logging_steps 5 --save_steps 5 --per_device_train_batch_size 2 --gradient_accumulation_steps 4 --overwrite_output_dir --evaluation_strategy=steps --per_device_eval_batch_size 2 --con_loss --yuzhi 0.5 --choice 0 --label_num 27 --save_total_limit 1 --English
+```
+
+## Teste
+
+Pode-se fazer o teste de forma separada do treinamento. Para tanto, mova os seguintes arquivos para a pasta na qual se encontra o modelo:
+
+- pytorch_model.bin
+- config.json
+- special_tokens_map.json
+- tokenizer_config.json
+- tokenizer.json
+- vocab.txt
+
+Então:
+
+- Mova-se para dentro do diretório **examples/pytorch/sequence_labeling**;
+- Execute o *script* **run_language_modeling.py** passando os seguintes parâmetros:
+
+| Parâmetro | Descrição |
+|-------------|---------------|
+| output_dir | Diretório de saída do modelo |
+| model_type | Tipo do modelo (*e.g*: **bert**) |
+| model_name_or_path | Nome ou caminho do modelo (*e.g*: **bert_base_uncased**) |
+| do_eval | Realizar avaliação sobre o conjunto de avaliação (caso apenas passado, assume valor padrão **True**) |
+| eval_data_file | Nome e caminho do arquivo no qual será salvo os *checkpoints* de teste |
+| block_size | Tamanho do bloco de entrada do *BERT* |
+| line_by_line | Indica se cada linha do documento deve ser considerada como uma sequência distinta. Se passado, assume valor **True** por padrão |
+| per_device_eval_batch_size | Tamanho do lote de treinamento por dispositivo (no caso, por processador) |
+| dataset_size | Tamanho do *dataset* em número de documentos |
+
+Um exemplo de comando de execução para o *dataset* de doenças em Língua Inglesa:
+
+```bash
+python test.py --model_type=bert --output_dir=dir --model_name_or_path=model_save_path --do_eval --eval_data_file=test_file_path --line_by_line --block_size 48 --per_device_eval_batch_size 2 --English --dataset_size x
+```
+
