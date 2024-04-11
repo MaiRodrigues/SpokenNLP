@@ -2,9 +2,25 @@
 
 Este documento traz um manual com os passos necessários para realizar o treinamento do modelo LongFormer [2]. As subseções se seguem conforme a lista a seguir:
 
+- **Clonar o repositório**: descarregar o repositório com o código fonte do modelo em máquina local;
 - **Requisitos**: requisitos mínimos da máquina para processar o modelo;
 - **Pré-processamento**: etapas para processamento dos dados de entrada para o formato esperado pelo modelo;
 - **Treinamento**: etapas para realização do treinamento do modelo propriamente dito, explicitando os seus parâmetros de entrada com suas respectivas descrições.
+
+## Clonar o repositório
+O código fonte do modelo **Longformer []** está disponível no repositório acessível por https://github.com/alibaba-damo-academy/SpokenNLP, hospedado na plataforma **Github**. Para descarregá-lo em máquina local, execute:
+
+```bash
+git clone git@github.com:alibaba-damo-academy/SpokenNLP.git
+```
+
+**Obs.:** Caso utilize outra forma para a operação de *clone* (**HTTPS** ou *CLI* do *Github*, por exemplo), executar o comando correspondente.
+
+Depois, mova para a pasta **SpokenNLP/emnlp2023-topic_segmentation**:
+
+```bash
+cd ./SpokenNLP/emnlp2023-topic_segmentation
+```
 
 ## Requisitos
 
@@ -19,7 +35,12 @@ Instalar também bibliotecas do **PyTorch** na seguinte versão:
 pip install torch==1.12.1+cu113
 ```
 
-Também deve-se descarregar o tokenizador presente em https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/tokenizers/punkt.zip, descompactar o arquivo e movê-lo para o diretório interno **/share/nltk_data/tokenizer** da biblioteca do **PyTorch** recém instalada.
+Também deve-se descarregar o tokenizador **punkt**, que utiliza o sinal gráfico de ponto final para segmentar o documento em sentenças. Para tanto, abra um terminal interativo do **Python** e execute:
+
+```python
+>>> import nltk
+>>> nltk.download("punkt")
+```
 
 ## Pré-processamento
 
@@ -30,10 +51,17 @@ Antes da realização das seguintes etapas de pré-processamento, deve-se descar
 - **de_disease**: *dataset* de doenças (alemão);
 - **de_city**: *dataset* de cidades (alemão);
 
-No projeto em desenvolvimento, foram utilizados os conjuntos de dados em inglês (**en_disease** e **en_city**). A partir deste ponto, siga os passos:
+No projeto em desenvolvimento, foram utilizados os conjuntos de dados em inglês (**en_disease** e **en_city**). 
 
---TODO--
+O modelo também utiliza mais três *datasets* para treinamento e avaliação: **Elements** (https://groups.csail.mit.edu/rbg/code/mallows/), **WIKI-727K** (https://github.com/koomri/text-segmentation) e **WIKI-50** (https://github.com/koomri/text-segmentation). Seguindo os procedimentos para geração/extração dos conjuntos, deve-se especificar a localização deles no arquivo `./config/config.ini` (para o caso de **Wikisection**, deve-se extrair o arquivo **wikisection_dataset_json.tar.gz**, onde **_dataset** corresponde a um conjunto dos quatro supracitados que se deseja utilizar).
 
+Concluídas as últimas etapas, executar o script **run_proccess_data.sh**:
+
+```bash
+./run_process_data.sh
+```
+
+As saídas do pré-processamento dos *datasets* será automaticamente depositada na pasta **./data**.
 ## Utilização de modelos pré-treinados
 
 --TODO--
