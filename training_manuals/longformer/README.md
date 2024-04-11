@@ -64,7 +64,14 @@ Concluídas as últimas etapas, executar o script **run_proccess_data.sh**:
 As saídas do pré-processamento dos *datasets* será automaticamente depositada na pasta **./data**.
 ## Utilização de modelos pré-treinados
 
---TODO--
+Caso seja necessário utilizar modelos pré-treinados, descarregue-os e insira-os no diretório `./pretrained_models`. Os modelos suportados pelo projeto são:
+
+- **longformer_base**: https://huggingface.co/allenai/longformer-base-4096/;
+- **bigbird_base**: https://huggingface.co/google/bigbird-roberta-base/;
+- **bert_base**: https://huggingface.co/bert-base-uncased/;
+- **electra_base**: https://huggingface.co/google/electra-base-discriminator;
+
+Estes quatro modelos estão disponíveis em **HuggingFace**. Para utilização no treinamento deste, ao abrir a respectiva página do modelo, vá até a seção **Files** e descarregue o arquivo com extensão **.bin**.
 
 ## Treinamento
 
