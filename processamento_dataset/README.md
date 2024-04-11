@@ -8,7 +8,7 @@
 - *Artigo:* [(https://ojs.aaai.org/index.php/AAAI/article/view/26477)]
 
 ### Resumo
-
+es
 <!--[Elabore uma breve descrição do dataset, informando: o uso pretendido, os
 idiomas presentes, o domínio dos dados.] -->
 
@@ -90,7 +90,7 @@ distribuição dos dados coletados, etc.]
 [Tabela de rótulos de classe]
 | *conjunto de dados| *pt_disease* | *de_doença* | *en_city * |  *de_cidade*| **total*   |
 |:------------------:|:------------:|:-----------:|:----------:|:-----------:|:----------:|
-|linguagem           |  Inglês      | alemão      | inglês     | alemão      |            |
+|linguagem           |  Inglês      | português   | inglês     | português   |            |
 |instancia de        |   Q12136     | Q12136      |  Q515      | Q515        |            |
 |documentos          |   3.590      | 2.323       |  19.539    | 12.53       | 38k        |
 |seções              |   27.838     | 14.784      |  133.642   | 65.907      | 242 mil    |
@@ -180,6 +180,7 @@ Na Tabela 2, são exibidas métricas de tamanho do dataset Wikisection e da sua 
 [O dataset Pt_disease possui 307 documentos de validação, 630 de teste e 2172 de treino com os seguintes rótulos, dispostos na Tabela 4:
 
 |Rótulo de entrada| Rótulo de saída do script de split|
+|-----------------------------------------------------|
 |doença.sintoma|	0|
 |doença.genética|	1|
 |doença.diagnóstico|	2|
@@ -213,6 +214,7 @@ Na Tabela 2, são exibidas métricas de tamanho do dataset Wikisection e da sua 
 
 [O daset En_city possui 1953 documentos de validação, 771 documentos de teste e 13679 documentos de treino com rótulos colocados na Tabela 5:]
 |Rótulo de entrada|	Rótulo de saída do script de split|
+|-----------------------------------------------------|
 |city.architecture|	0|
 |city.economics|	1|
 |city.history|2|
@@ -248,6 +250,7 @@ Na Tabela 2, são exibidas métricas de tamanho do dataset Wikisection e da sua 
 
 [O daset Pt_city possui 1726 documentos de validação, 3476 documentos de teste e 12240 documentos de treino com os rótulos mostrados na Tabela 6:]
 |Rótulo de entrada|	Rótulo de saída do script de split|
+|-----------------------------------------------------|
 |cidade.arquitetura	|0|
 |cidade.economia|	1|
 |cidade.história|	2|
