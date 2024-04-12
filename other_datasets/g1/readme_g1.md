@@ -135,9 +135,16 @@ Se for um campo de categoria, informe os valores possíveis. -->
 treinamento, validação e teste. Forneça os tamanhos das divisões. Se achar
 pertinente, forneça também estatísticas úteis de cada divisão. -->
 
-Número de notícias por categoria - conjunto de treino:
 
+#### Treino
 Tamanho: 909
+Número de palavras: 630435
+Número de sentenças: 23148
+Número de notícias: 911
+
+
+Número de notícias por categoria
+
 
 |:Categoria: |: Quantidade: | : Porcentagem de composição: |
 |--------|------------|------------------------------------|
@@ -155,9 +162,25 @@ Tamanho: 909
 |tecnologia| 67       | 7,4%                               |                                        
 |turismo-e-viagem| 68 | 7,5%                               |
 
-Número de notícias por categoria - conjunto de teste:
+Distribuição de documentos aglutinados por tamanho (medido em notícias)
 
+|:n° notícias:| :n° frequência:|
+|--------|---------------|
+|1       | 69             |
+|2       | 72             |
+|3       | 63             |
+|4       | 66             |
+|5       | 49             |
+
+
+#### Teste
 Tamanho: 261
+Número de palavras: 186426
+Número de sentenças: 6967
+Número de notícias: 262
+
+Número de notícias por categoria
+
 
 |:Categoria: |: Quantidade: | : Porcentagem de composição: |
 |--------|------------|------------------------------------|
@@ -175,11 +198,25 @@ Tamanho: 261
 |tecnologia| 24       | 9,2%                               |                                        
 |turismo-e-viagem| 20 | 7,7%                               |
 
+Distribuição de documentos aglutinados por tamanho (medido em notícias)
+
+|:n° notícias:| :n° frequência:|
+|--------|---------------|
+|1       | 19             |
+|2       | 21             |
+|3       | 14             |
+|4       | 16             |
+|5       | 19             |
+
+#### Validação
+Tamanho: 130
+Número de palavras: 91984
+Número de sentenças: 3295
+Número de notícias: 132
 
 
 Número de notícias por categoria - conjunto de validação:
 
-Tamanho: 130
 
 |:Categoria: |: Quantidade: | : Porcentagem de composição: |
 |--------|------------|------------------------------------|
@@ -197,28 +234,15 @@ Tamanho: 130
 |tecnologia| 9       | 6,9%                               |                                        
 |turismo-e-viagem| 12 | 9,2%                               |
 
+Distribuição de documentos aglutinados por tamanho (medido em notícias)
 
-|:Treino:| :n° documentos:|
+|:n° notícias:| :n° frequência:|
 |--------|---------------|
-|895     | 5             |
-|1000    | 4             |
-|1500    | 3             |
-|500     | 2             |
+|1       | 11             |
+|2       | 8             |
+|3       | 11             |
+|4       | 8             |
+|5       | 8             |
 
-
-|:Teste:| :n° documentos:|
-|-------|---------------|
-|385    | 5             |
-|416    | 4             |
-|651    | 1             |
-|218    | 2             |
-
-|:Teste: |:Assunto:   |
-|--------|------------|
-|474     | esportes   |
-|466     | economia   |
-|384     | politica   |
-|190     | tecnologia |
-|155     | famosos    |
 
 
