@@ -2,6 +2,7 @@ en_*
 test
 train
 val
+validation
 **/dir
 .env
 **/.ipynb_checkpoints/**
