@@ -6,11 +6,7 @@
 do dataset original. Se você está combinando ou alterando datasets, ou está
 construindo um dataset novo, preencha apenas o nome do dataset. -->
 
-- **Nome:** [Notícias publicadas no Brasil]
-- **Página WEB:** [Página WEB do dataset]
-- **Repositório:** [Repositório para baixar o dataset]
-- **Artigo:** [Link do artigo relacionado ao dataset]
-- **Licença:** [Licença do dataset]
+- **Nome:** *Dataset* de notícias extraído do RSS do G1
 
 ## Resumo
 
@@ -20,15 +16,9 @@ construindo um dataset novo, preencha apenas o nome do dataset. -->
 * Os principais idiomas presentes.
 * O domínio dos dados. -->
 
-[Este conjunto de dados contém uma compilação de matérias extraídas dos sites do grupo globo. São mais de 10 mil textos, publicados entre 2014 e 2020, com as seguintes informações:
+Este conjunto de dados contém notícias extraídas do repositório de notícias do G1 (Portal de notícias *online* da Globo) no formato *RSS* (*Rich Site Summary*), atualizado pela última vez em 08/11/2012 (disponível em: https://g1.globo.com/tecnologia/noticia/2012/11/siga-o-g1-por-rss.html). Os arquivos foram submetidos a pré-processamentos para aderirem ao formato do modelo a ser utilizado no projeto.
 
-|Dados: dados em que a matéria foi extraída do site|
-|Url da notícia no web.archive: endereço em que a matéria foi salva no web.archive|
-|Url da notícia: endereço em que a matéria foi publicada no site original|
-|Título: título da matéria|
-|Conteúdo: conteúdo da matéria|
-|Assunto: assunto da matéria (esportes, economia, política ou famosos)|
-]
+
 
 ## Utilização Pretendida
 
@@ -52,72 +42,94 @@ descreva o processo de coleta e processamento. Se foi usado um dataset já exist
 indique a URL do dataset original. Se o dataset existente foi modificado,
 descreva a modificação realizada e as ferramentas usadas. -->
 
-[(https://www.kaggle.com/datasets/diogocaliman/notcias-publicadas-no-brasil)]
 
-[O dataset criado por Diogo Caliman inicialmente continha 10.109 notícias categorizadas em esportes, economia, política, tecnologia e celebridades. Após a limpeza dos valores incorretos e a remoção de 75% das notícias de esportes para balancear o dataset, restaram 1.500 notícias de esportes e 5.564 notícias de outras categorias.
+Extraiu-se os arquivos *RSS* através de requisição à API disponibilizadao pelo fornecedor (`GET https://g1.globo.com/rss/g1/{categoria}`) com as notícias da data referida. O campo categoria representa o tema da notícia, e a relação entre os seus valores e as seções de notícias do portal é dada pela seguinte tabela:
 
-O dataset foi então dividido em um conjunto de treinamento com 3.895 notícias e um conjunto de teste com 1.669 notícias. No conjunto de treinamento, as categorias foram distribuídas da seguinte forma:
+|Valor do campo|Seção         | 
+|--------------|---------------------|
+| brasil | Brasil |
+| carros | Carros |
+| economia | Economia |
+| educacao | Educacao |
+| loterias | Loterias |
+| mundo | Mundo |
+| musica | Musica |
+| natureza | Natureza |
+| planeta-bizarro | Planeta Bizarro |
+| politica | Política |
+| pop-arte | Pop & Arte |
+| tecnologia | Tecnologia & Games |
+| turismo-e-viagem | Turismo & Viagem |
 
-Economia: 1.092 notícias
-Esportes: 1.017 notícias
-Política: 979 notícias
-Tecnologia: 422 notícias
-Famosos: 385 notícias
-No conjunto de teste, as categorias ficaram assim:
+Para extrair os textos das notícias das respostas em formato *XML*, elas foram requisições a um pré-processamento e cada notícia foi armazenada na linha de um *dataframe* **Pandas**. Para aleatorizar as notícias nele armazenadas e evitar o surgimento de grandes blocos contíguos de notícias de mesma categoria, ele foi aleatorizado utilizando-se o método **.sample**, passando como argumentos **frac=1**.
 
-Esportes: 474 notícias
-Economia: 466 notícias
-Política: 384 notícias
-Tecnologia: 190 notícias
-Famosos: 155 notícias
-Essa divisão foi feita considerando a distribuição de documentos por categoria em cada conjunto, com diferentes quantidades de documentos por notícia. O objetivo era criar conjuntos balanceados para treinamento e teste do modelo.
-
-O conjunto de treinamento foi composto por 3.895 notícias divididas em documentos com diferentes quantidades de notícias por documento:
-
-895 documentos com 5 notícias cada
-1000 documentos com 4 notícias cada
-1500 documentos com 3 notícias cada
-500 documentos com 2 notícias cada
-Já o conjunto de teste foi composto por 1.669 notícias divididas da seguinte forma:
-
-385 documentos com 5 notícias cada
-416 documentos com 4 notícias cada
-651 documentos com 3 notícias cada
-218 documentos com 2 notícias cada
-]
+Para prepará-lo para as etapas de treinamento, realizou-se as seguintes etapas:
+- Tokenização dos textos das notícias a nível de sentença e posterior concatenação delas com o caractere de quebra de linha (**\n**);
+- Divisão do conjunto em outros três: **treino** (contendo 70% das amostras), **teste** (com 20%) e **validação** (com 10%).
+- Aglutinação das notícias para criação de textos maiores em arquivos (cada arquivo contém de uma a cinco notícias, quantia atribuída aleatoriamente), respeitando o formato de entrada do **Segformer**;
 
 ## Estrutura
 
-|dataset|Historico_de_materias| 
+O primeiro *dataframe* gerado da extração possui a seguinte estrutura:
+
+
+| Campo | Descrição | 
 |-------|---------------------|
-|idioma|Portuguese|
-|# docs|10109|
-|# docs utilizados| 5564|
-|# sections| 
-|# sentences|
-|# headings|
-|# classes|
+| title |Título da notícia|
+| description | Corpo da notícia |
+| category | Categoria da notícia |
+
+Os arquivos gerados para entrada ao modelo **Segformer** possuem o seguinte formato:
+
+```text
+========== ; category_1; category_1
+description_1
+========== ; category_2; category_2
+description_2
+.....
+```
+, no qual **category_n** representa a categoria da notícia **n** do arquivo e **description_n** o texto do mesmo (com 1 <= **n** <= 5). O modelo escolhido utiliza apenas a primeira ocorrência de **category_n** no arquivo (entre os delimitadors "========== ;" e ";"), sendo a segunda necessária apenas porque a entrada do modelo a atribui como obrigatória (não a utilizando no processamento interno). 
+
+Na próxima seção, são exibidas amostras do *dataset* nos dois estágios descritos.
+
 
 ### Amostras
 
-<!-- Dê um exemplo usando uma estrutura JSON de uma amostra típica do dataset. 
-
-Um exemplo de amostra do dataset:
+Segue uma amostra do conjunto de dados no primeiro estágio (como registro de um *dataframe* **Pandas**). Nele, cada linha do *dataframe* corresponde a uma notícia. **Obs.:** A amostra abaixo é exibida no formato **JSON** apenas para efeitos de visualização.
 
 ```json
 {
-    "id": "13818513", 
-    "summary": "Amanda baked cookies and will bring Jerry some tomorrow.", 
-    "dialogue": "Amanda: I baked  cookies. Do you want some?\r\nJerry: Sure!"
+ "title": "Cientista e engenheiro de dados estão em alta e têm salário que pode passar de R$ 20 mil; veja como entrar",
+ "description": "   Com desafio de encontrar mão de obra qualificada, profissões seguem em alta em 2024 porque empresas valorizam cada vez mais o uso de dados na tomada de decisões.\nO g1 ...",
+ "category": "tecnologia"
 }
 ```
--->
 
-<!-- Se achar importante, dê informações adicionais sobre os dados e que não estejam
-em outras seções, por exemplo, estatísticas sobre as amostras do dataset,
-distribuição dos dados coletados, etc. -->
+Um exemplo de arquivo com notícias de diferentes tópicos aglutinadas segue abaixo:
 
-[Este conjunto de dados foi criado a partir de um script que pode ser facilmente modificado para ler o conteúdo de outros sites (web scraping).]
+```text
+========== ; loterias; loterias
+   Sorteio acontece no dia 30 de março, às 20h.
+Apostas podem ser feitas a partir deste sábado (16).
+Dupla Sena, Loteria
+Stephanie Fonseca/G1
+A Dupla Sena de Páscoa irá pagar um prêmio de R$ 35 milhões.
+O concurso especial será realizado no dia 30 de março, às 20h (horário de Brasília).
+As apostas podem ser feitas a partir deste sábado (16) — e vão até as 19h do dia do sorteio.
+(Veja mais abaixo como apostar) 
+Como a Dupla Sena de Páscoa não acumula, se ninguém acertar as seis dezenas, o prêmio será dividido entre os acertares da quina do primeiro sorteio, e assim por diante.
+Essa é a oitava edição do concurso especial da Dupla Sena.
+O maior prêmio da modalidade foi pago em 2023, quando duas apostas dividiram R$ 34,9 milhões.
+Como apostar
+As apostas podem ser feitas em lotéricas, no portal Loterias Caixa e também no aplicativo Loterias Caixa.
+O bilhete da Dupla Sena dá o dobro de chances de ganhar: são dois sorteios por concurso e ganha acertando 3, 4, 5 ou 6 números no primeiro ou segundo sorteio.
+O apostador deve escolher de 6 a 15 números dentre os 50 disponíveis para jogar.
+O apostador também tem a opção de solicitar a Surpresinha, que é quando o sistema escolhe os números.
+A aposta simples custa R$ 2,50.
+Veja como foi a edição de 2023:
+Dupla Sena de Páscoa: Bolão de Goiânia ganha R$ 17 milhões
+
+```
 
 ### Campos dos Dados
 
