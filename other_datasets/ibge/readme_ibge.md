@@ -137,10 +137,10 @@ pertinente, forneça também estatísticas úteis de cada divisão. -->
 
 
 #### Treino
-Tamanho: 2643
-Número de palavras: 3047504
-Número de sentenças: 64881
-Número de documentos gerados: 1062
+- Tamanho: 2643
+- Número de palavras: 3047504
+- Número de sentenças: 64881
+- Número de documentos gerados: 1062
 
 
 Número de notícias por categoria
@@ -175,10 +175,10 @@ Distribuição de documentos aglutinados por tamanho (medido em notícias)
 
 
 #### Teste
-Tamanho: 755
-Número de palavras: 889779
-Número de sentenças: 17918
-Número de documentos gerados: 299
+- Tamanho: 755
+- Número de palavras: 889779
+- Número de sentenças: 17918
+- Número de documentos gerados: 299
 
 Número de notícias por categoria
 
@@ -212,10 +212,10 @@ Distribuição de documentos aglutinados por tamanho (medido em notícias)
 |4       | 68             |
 
 #### Validação
-Tamanho: 378
-Número de palavras: 435643
-Número de sentenças: 9021
-Número de notícias: 156
+- Tamanho: 378
+- Número de palavras: 435643
+- Número de sentenças: 9021
+- Número de documentos gerados: 156
 
 
 Número de notícias por categoria - conjunto de validação:
