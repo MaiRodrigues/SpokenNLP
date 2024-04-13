@@ -1,11 +1,5 @@
- Dataset Card para [Noticias G1]
-Dados Gerais
-Nome: [Notícias G1]
-Página WEB: [Página WEB do dataset]
-Repositório: [Repositório para baixar o dataset]
-Artigo: [Link do artigo relacionado ao dataset]
-Licença: [Licença do dataset]
-# Dataset Card para [nome do dataset]
+Dataset Card para [Noticias G1]
+
 
 ## Dados Gerais
 
@@ -13,7 +7,7 @@ Licença: [Licença do dataset]
 do dataset original. Se você está combinando ou alterando datasets, ou está
 construindo um dataset novo, preencha apenas o nome do dataset. -->
 
-- **Nome:** [Nome do dataset]
+- **Nome:** [Notícias G1]
 - **Página WEB:** [Página WEB do dataset]
 - **Repositório:** [Repositório para baixar o dataset]
 - **Artigo:** [Link do artigo relacionado ao dataset]
@@ -72,7 +66,7 @@ descreva a modificação realizada e as ferramentas usadas. -->
 
 <!-- Dê um exemplo usando uma estrutura JSON de uma amostra típica do dataset. -->
 
-<! Um exemplo de amostra do dataset:
+<!-- Um exemplo de amostra do dataset:
 
 
 ```json
@@ -118,19 +112,19 @@ pertinente, forneça também estatísticas úteis de cada divisão. -->
 
 |:Categoria:      |:Quantidade:	|: Porcentagem de composição:|
 |-----------------|-------------|----------------------------|
-|brasil	          |71	        |7,8%|
-|carros           |68	        |7,5%|
-|economia	        |72            |7,9%|
-|educacao         |65	        |7,2%|
-|loterias         |71	        |7,9%|
-|mundo	          |72	        |7,9%|
-|musica	          |69	        |7,6%|
-|natureza         |75	        |8,3%|
-|planeta-bizarro  |	74	        |8,1%|
-|politica         |	72          |7,9%|
-|pop-arte         |	65	        |7,1%|
-|tecnologia	      |67	        |7,4%|
-|turismo-e-viagem |	68	        |7,5%|
+|brasil	          |71	          |7,8%|
+|carros           |68	          |7,5%|
+|economia	        |72           |7,9%|
+|educacao         |65	          |7,2%|
+|loterias         |71	          |7,9%|
+|mundo	           |72	          |7,9%|
+|musica	          |69	          |7,6%|
+|natureza         |75	          |8,3%|
+|planeta-bizarro  |74	          |8,1%|
+|politica         |72           |7,9%|
+|pop-arte         |65	          |7,1%|
+|tecnologia	      |67	          |7,4%|
+|turismo-e-viagem |68	          |7,5%|
 
 
 |Distribuição de documentos aglutinados por tamanho (medido em notícias)|
@@ -155,14 +149,14 @@ pertinente, forneça também estatísticas úteis de cada divisão. -->
 |economia           | 18	        |6,9%                        |
 |educacao           | 23	        |8,8%                        |
 |loterias           | 22	        |8,4%                        |
-|mundo	            | 13          |5,0%                        |
+|mundo	             | 13         |5,0%                        |
 |musica	            | 20	        |7,7%                        |
 |natureza           | 19	        |7,3%                        |
 |planeta-bizarro    | 19	        |7,3%                        |
 |politica           | 20	        |7,7%                        |
-|pop-arte	          | 25          |9,6%                        |
+|pop-arte	          | 25         |9,6%                        |
 |tecnologia	        | 24	        |9,2%                        |
-|turismo-e-viagem	  |20	          |7,7%                        |
+|turismo-e-viagem	  |20	         |7,7%                        |
 
 
 Distribuição de documentos aglutinados por tamanho (medido em notícias)
@@ -180,20 +174,20 @@ Distribuição de documentos aglutinados por tamanho (medido em notícias)
 
 |Número de notícias por categoria - conjunto de validação:|
 |---------------------------------------------------------|
-|:Categoria:	  |: Quantidade:	|: Porcentagem de composição:|
-|brasil	          |11	            |8,5%|
-|carros	          |12	            |9,2%|
-|economia         |10	            |7,7%|
-|educacao         |12	            |9,2%|
-|loterias         |7	            |5,4%|
-|mundo	          |15	            |11,5%|
-|musica           |11	            |8,5%|
-|natureza         |6	            |4,6%|
-|planeta-bizarro  |7	            |5,4%
-|politica         |8	            |6,2%|
-|pop-arte         |10	            |7,7%|
-|tecnologia	      |9	            |6,9%|
-|turismo-e-viagem |	12	          |9,2%|
+|:Categoria:	      |: Quantidade:	|: Porcentagem de composição:|
+|brasil	           |11	           |8,5%|
+|carros	           |12	           |9,2%|
+|economia          |10	           |7,7%|
+|educacao          |12	           |9,2%|
+|loterias          |7	            |5,4%|
+|mundo	            |15	           |11,5%|
+|musica            |11	           |8,5%|
+|natureza          |6	            |4,6%|
+|planeta-bizarro   |7	            |5,4%
+|politica          |8	            |6,2%|
+|pop-arte          |10	           |7,7%|
+|tecnologia	       |9	            |6,9%|
+|turismo-e-viagem  |12	           |9,2%|
 
 
 Distribuição de documentos aglutinados por tamanho (medido em notícias)
