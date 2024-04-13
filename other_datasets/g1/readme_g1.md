@@ -70,6 +70,12 @@ Para prepará-lo para as etapas de treinamento, realizou-se as seguintes etapas:
 
 ## Estrutura
 
+|dataset|Notícias G1| 
+|-------|---------------------|
+|idioma|Portuguese|
+|# docs|1300|
+|# docs utilizados| 1300 |
+
 O primeiro *dataframe* gerado da extração possui a seguinte estrutura:
 
 

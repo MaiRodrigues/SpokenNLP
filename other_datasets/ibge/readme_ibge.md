@@ -6,11 +6,7 @@
 do dataset original. Se você está combinando ou alterando datasets, ou está
 construindo um dataset novo, preencha apenas o nome do dataset. -->
 
-- **Nome:** [Notícias publicadas no Brasil]
-- **Página WEB:** [Página WEB do dataset]
-- **Repositório:** [Repositório para baixar o dataset]
-- **Artigo:** [Link do artigo relacionado ao dataset]
-- **Licença:** [Licença do dataset]
+- **Nome:** Dataset de notícias do IBGE
 
 ## Resumo
 
@@ -20,15 +16,7 @@ construindo um dataset novo, preencha apenas o nome do dataset. -->
 * Os principais idiomas presentes.
 * O domínio dos dados. -->
 
-[Este conjunto de dados contém uma compilação de matérias extraídas dos sites do grupo globo. São mais de 10 mil textos, publicados entre 2014 e 2020, com as seguintes informações:
-
-|Dados: dados em que a matéria foi extraída do site|
-|Url da notícia no web.archive: endereço em que a matéria foi salva no web.archive|
-|Url da notícia: endereço em que a matéria foi publicada no site original|
-|Título: título da matéria|
-|Conteúdo: conteúdo da matéria|
-|Assunto: assunto da matéria (esportes, economia, política ou famosos)|
-]
+Este conjunto de dados foi feito com base em notícias obtidas da *API* de notícias do *IBGE (https://servicodados.ibge.gov.br/api/docs/noticias?versao=3), extraindo-se os textos delas através de técnicas de *web-scrapping*.
 
 ## Utilização Pretendida
 
@@ -47,87 +35,89 @@ Nesta seção, você pode detalhar e expandir o que foi apresentado no resumo. -
 
 ## Criação
 
-<!-- Se o dataset foi construído por você, indique a fonte dos dados usados e
-descreva o processo de coleta e processamento. Se foi usado um dataset já existente,
-indique a URL do dataset original. Se o dataset existente foi modificado,
-descreva a modificação realizada e as ferramentas usadas. -->
+Extraiu-se as notícias através de requisição à API disponibilizada pelo fornecedor (`http://servicodados.ibge.gov.br/api/v3/noticias/`). A resposta dela retorna uma lista com, entre outros campos, a *URL* da notícia. Para extrair seu texto, foi realizado processo de *web-scrapping* no *HTML* presente na página apontada pela *URL*.
 
-[(https://www.kaggle.com/datasets/diogocaliman/notcias-publicadas-no-brasil)]
+O campo **editoria** representa o tema da notícia, e seus valores possíveis são: **economicas**, **geociencias**, **sociais**, **revistaretratos**, **ibge;censo2020**, **ibge**, **seriesespeciais**, **revistaretratos;ibge**, **sociais;ibge**, **sociais;economicas**, **seriesespeciais;censo2020**, **censo2020**, **sociais;censo2020**, **ibge;geociencias** e **sociais;geociencias**.
 
-[O dataset criado por Diogo Caliman inicialmente continha 10.109 notícias categorizadas em esportes, economia, política, tecnologia e celebridades. Após a limpeza dos valores incorretos e a remoção de 75% das notícias de esportes para balancear o dataset, restaram 1.500 notícias de esportes e 5.564 notícias de outras categorias.
+Percebeu-se que, das 5722 notícias extraídas, grande parte delas possuíam um valor nulo no campo **editoria**. Portanto, elas foram removidas, totalizando um conjunto deduzido de 3776 delas.
 
-O dataset foi então dividido em um conjunto de treinamento com 3.895 notícias e um conjunto de teste com 1.669 notícias. No conjunto de treinamento, as categorias foram distribuídas da seguinte forma:
+Cada notícia foi armazenada na linha de um *dataframe* **Pandas**. Para aleatorizar as notícias nele armazenadas e evitar o surgimento de grandes blocos contíguos de notícias de mesma categoria, ele foi aleatorizado utilizando-se o método **.sample**, passando como argumentos **frac=1**.
 
-Economia: 1.092 notícias
-Esportes: 1.017 notícias
-Política: 979 notícias
-Tecnologia: 422 notícias
-Famosos: 385 notícias
-No conjunto de teste, as categorias ficaram assim:
+Para prepará-lo para as etapas de treinamento, realizou-se as seguintes etapas:
+- Tokenização dos textos das notícias a nível de sentença e posterior concatenação delas com o caractere de quebra de linha (**\n**);
+- Divisão do conjunto em outros três: **treino** (contendo 70% das amostras), **teste** (com 20%) e **validação** (com 10%).
+- Aglutinação das notícias para criação de textos maiores em arquivos (cada arquivo contém de uma a cinco notícias, quantia atribuída aleatoriamente), respeitando o formato de entrada do **Segformer**;
 
-Esportes: 474 notícias
-Economia: 466 notícias
-Política: 384 notícias
-Tecnologia: 190 notícias
-Famosos: 155 notícias
-Essa divisão foi feita considerando a distribuição de documentos por categoria em cada conjunto, com diferentes quantidades de documentos por notícia. O objetivo era criar conjuntos balanceados para treinamento e teste do modelo.
-
-O conjunto de treinamento foi composto por 3.895 notícias divididas em documentos com diferentes quantidades de notícias por documento:
-
-895 documentos com 5 notícias cada
-1000 documentos com 4 notícias cada
-1500 documentos com 3 notícias cada
-500 documentos com 2 notícias cada
-Já o conjunto de teste foi composto por 1.669 notícias divididas da seguinte forma:
-
-385 documentos com 5 notícias cada
-416 documentos com 4 notícias cada
-651 documentos com 3 notícias cada
-218 documentos com 2 notícias cada
-]
 
 ## Estrutura
 
 |dataset|Historico_de_materias| 
 |-------|---------------------|
 |idioma|Portuguese|
-|# docs|10109|
-|# docs utilizados| 5564|
-|# sections| 
-|# sentences|
-|# headings|
-|# classes|
+|# docs|5722|
+|# docs utilizados| 3376 |
+
+O primeiro *dataframe* gerado da extração possui a seguinte estrutura:
+
+
+| Campo | Descrição | 
+|-------|---------------------|
+| title |Título da notícia|
+| description | Corpo da notícia |
+| category | Categoria da notícia |
+
+Os arquivos gerados para entrada ao modelo **Segformer** possuem o seguinte formato:
+
+```text
+========== ; category_1; category_1
+description_1
+========== ; category_2; category_2
+description_2
+.....
+```
+, no qual **category_n** representa a categoria da notícia **n** do arquivo e **description_n** o texto do mesmo (com 1 <= **n** <= 5). O modelo escolhido utiliza apenas a primeira ocorrência de **category_n** no arquivo (entre os delimitadors "========== ;" e ";"), sendo a segunda necessária apenas porque a entrada do modelo a atribui como obrigatória (não a utilizando no processamento interno). 
+
+Na próxima seção, são exibidas amostras do *dataset* nos dois estágios descritos.
 
 ### Amostras
 
-<!-- Dê um exemplo usando uma estrutura JSON de uma amostra típica do dataset. 
-
-Um exemplo de amostra do dataset:
+Segue uma amostra do conjunto de dados no primeiro estágio (como registro de um *dataframe* **Pandas**). Nele, cada linha do *dataframe* corresponde a uma notícia. **Obs.:** A amostra abaixo é exibida no formato **JSON** apenas para efeitos de visualização.
 
 ```json
 {
-    "id": "13818513", 
-    "summary": "Amanda baked cookies and will bring Jerry some tomorrow.", 
-    "dialogue": "Amanda: I baked  cookies. Do you want some?\r\nJerry: Sure!"
+    "editorias": "economicas",
+    "texto": "Mais da metade dos filhos (51,4%) tiveram ascensão sócio-ocupacional em relação à mãe (mobilidade intergeracional), enquanto 47,4% ascenderam em relação ao pai.\nA presença da mãe no domicílio contribuiu para um nível mais ..."
 }
 ```
--->
 
-<!-- Se achar importante, dê informações adicionais sobre os dados e que não estejam
-em outras seções, por exemplo, estatísticas sobre as amostras do dataset,
-distribuição dos dados coletados, etc. -->
+Um exemplo de arquivo com notícias de diferentes tópicos aglutinadas segue abaixo:
 
-[Este conjunto de dados foi criado a partir de um script que pode ser facilmente modificado para ler o conteúdo de outros sites (web scraping).]
+```text
+========== ; economicas; economicas
+O IBGE realizou mais uma atualização semestral da listagem dos municípios que compõem as regiões metropolitanas (RMs), regiões integradas de desenvolvimento (RIDEs) e aglomerações urbanas definidas pelos estados e pela União, com base em informações de 31 de dezembro de 2016.
+Desde 2013, o IBGE atualiza semestralmente, em seu site, a composição das diferentes RMs, RIDEs e Aglomerações Urbanas instituídas no país.
+Outras informações sobre os recortes regionais podem ser acessadas aqui.Revisão mostra criação de RMs nos estados de São Paulo, Ceará e RondôniaAtualmente, existem 73 regiões metropolitanas no país, sendo que o estado com maior número é a Paraíba (12), seguida por Santa Catarina (9) e Alagoas (8).
+A revisão atual do IBGE mostra a criação da RM de Ribeirão Preto (SP), com 34 municípios, instituída pela Lei Complementar nº 1.290, de 06 de julho de 2016.Além disso, foi criada a RM de Sobral (CE), com 18 municípios, instituída pela Lei Complementar nº 168, de 27 de dezembro de 2016.
+Por fim, foi registrada a primeira Região Metropolitana rondoniense, que inclui a capital do estado, Porto Velho, e o município de Candeias do Jamari, conforme Lei nº 3.654, de 09 de novembro de 2015.A revisão do IBGE não traz mudanças nas listagens de municípios das regiões integradas de desenvolvimento (RIDEs): a de Petrolina/Juazeiro, a da Grande Teresina e a do Distrito Federal e Entorno.As regiões metropolitanas e aglomerações urbanas são recortes instituídos por lei complementar estadual, de acordo com a determinação da Constituição Federal de 1988, visando integrar a organização, o planejamento e a execução de funções públicas de interesse comum.
+É competência dos estados a definição das regiões metropolitanas e aglomerações urbanas, nos termos do Artigo 25, Parágrafo 3° da Constituição Federal.
+Já as Regiões Integradas de Desenvolvimento (RIDEs) são definidas como regiões administrativas que abrangem diferentes unidades da federação.
+As RIDEs são criadas por legislação específica, na qual os municípios que as compõem são elencados, além de definir a estrutura de funcionamento e os interesses das unidades político-administrativas participantes.
+No caso das RIDEs, a competência de criá-las é da União, dada pelo Artigo 43, Parágrafo 1° da Constituição Federal.
+Comunicação Social23 de maio de 2017
+
+
+```
+
 
 ### Campos dos Dados
 
 <!-- Indique e descreva os campos presentes no dataset. Informe o tipo do campo. 
 Se for um campo de categoria, informe os valores possíveis. -->
 
-
-- |:dados de publicação da notícia:| :endereço da página com a notícia salva no web.archive:|:endereço da página com a notícia no portal original:|:título da notícia:      |:Texto principal da notícia:|:Assunto da notícia (esportes, economia, política, tecnologia ou famosos):|  
-  |--------------------------------|--------------------------------------------------------|---------------------------------------------------|---------------------------|-------------------------  -|--------------------------------------------------------------------------|
-  |31/12/2013 a 2020-04-20         |10106 endereços únicos                                  |10089 valores únicos                               | 10087 valores únicos      |10081 valores únicos        |  Esportes 60%,  Economia 15%,  Outro (2516)  25%                         |
+| Campo | Descrição | 
+|-------|---------------------|
+| texto | Corpo da notícia|
+| editoria | Categoria da notícia |
 
 ### Divisão dos Dados
 
