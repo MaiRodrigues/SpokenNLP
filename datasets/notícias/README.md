@@ -125,10 +125,9 @@ distribuição dos dados coletados, etc. -->
 Se for um campo de categoria, informe os valores possíveis. -->
 
 
-- |:dados de publicação da notícia:| :endereço da página com a notícia salva no web.archive:|:endereço da página com a notícia no portal original:|:título da notícia:      |:Texto principal da notícia:|:Assunto da notícia (esportes, economia, política, tecnologia ou famosos):|  
-  |--------------------------------|--------------------------------------------------------|---------------------------------------------------|---------------------------|-------------------------  -|--------------------------------------------------------------------------|
+|:dados de publicação da notícia:|:endereço da página com a notícia salva no web.archive:|:endereço da página com a notícia no portal original:|:título da notícia:|:Texto principal da notícia:|:Assunto da notícia (esportes, economia, política, tecnologia ou famosos):|  
+ |-|-|-|-|-|-|
   |31/12/2013 a 2020-04-20         |10106 endereços únicos                                  |10089 valores únicos                               | 10087 valores únicos      |10081 valores únicos        |  Esportes 60%,  Economia 15%,  Outro (2516)  25%                         |
-
 ### Divisão dos Dados
 
 <!-- Descreva as divisões existentes no dataset. Por exemplo, conjuntos de
