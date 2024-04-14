@@ -38,8 +38,6 @@ exemplo e formatos de entrada. -->
 <!-- Indique os idiomas presentes no dataset. -->
 [Português]
 
-[Português]
-
 ## Criação
 
 <!-- Se o dataset foi construído por você, indique a fonte dos dados usados e
