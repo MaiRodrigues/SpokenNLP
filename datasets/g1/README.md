@@ -21,16 +21,7 @@ construindo um dataset novo, preencha apenas o nome do dataset. -->
 * Os principais idiomas presentes.
 * O domínio dos dados. -->
 
-Este conjunto de dados contém notícias extraídas do repositório de notícias do G1 (Portal de notícias online da Globo) no formato RSS (Rich Site Summary), atualizado pela última vez em 08/11/2012 (disponível em: https://g1.globo.com/tecnologia/noticia/2012/11/siga-o-g1-por-rss.html). Os arquivos foram submetidos a pré-processamentos para aderirem ao formato do modelo a ser utilizado no projeto
-
-
-
-|Data: data em que a matéria foi extraída do site|
-|Url da notícia no web.archive: endereço em que a matéria foi salva no web.archive|
-|Url da notícia: endereço em que a matéria foi publicada no site original|
-|Título: título da matéria|
-|Conteúdo: conteúdo da matéria|
-|Assunto: assunto da matéria (esportes, economia, política ou famosos)|
+Este conjunto de dados contém notícias extraídas do repositório de notícias do G1 (Portal de notícias online da Globo) no formato RSS (Rich Site Summary), atualizado pela última vez em 08/11/2012 (disponível em: https://g1.globo.com/tecnologia/noticia/2012/11/siga-o-g1-por-rss.html). Os arquivos foram submetidos a pré-processamentos para aderirem ao formato do modelo a ser utilizado no projeto.
 
 
 ## Utilização Pretendida
