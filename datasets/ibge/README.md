@@ -6,7 +6,7 @@
 do dataset original. Se você está combinando ou alterando datasets, ou está
 construindo um dataset novo, preencha apenas o nome do dataset. -->
 
-- **Nome:** Dataset de notícias do IBGE
+- **Nome:** Dataset de notícias extraídas da *API* de notícias IBGE
 
 ## Resumo
 
