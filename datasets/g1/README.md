@@ -1,4 +1,4 @@
-Dataset Card para [Noticias G1]
+Dataset Card para [Notícias G1]
 
 
 ## Dados Gerais
@@ -21,17 +21,17 @@ construindo um dataset novo, preencha apenas o nome do dataset. -->
 * Os principais idiomas presentes.
 * O domínio dos dados. -->
 
-[Este dataset contém uma compilação de matérias extraídas dos sites do grupo globo. São mais de 10 mil matérias, publicadas entre 2014 e 2020, com as seguintes informações:
+Este conjunto de dados contém notícias extraídas do repositório de notícias do G1 (Portal de notícias online da Globo) no formato RSS (Rich Site Summary), atualizado pela última vez em 08/11/2012 (disponível em: https://g1.globo.com/tecnologia/noticia/2012/11/siga-o-g1-por-rss.html). Os arquivos foram submetidos a pré-processamentos para aderirem ao formato do modelo a ser utilizado no projeto
+
 
 
 |Data: data em que a matéria foi extraída do site|
-|------------------------------------------------|
 |Url da notícia no web.archive: endereço em que a matéria foi salva no web.archive|
 |Url da notícia: endereço em que a matéria foi publicada no site original|
 |Título: título da matéria|
 |Conteúdo: conteúdo da matéria|
 |Assunto: assunto da matéria (esportes, economia, política ou famosos)|
-]
+
 
 ## Utilização Pretendida
 
@@ -114,14 +114,14 @@ pertinente, forneça também estatísticas úteis de cada divisão. -->
 |-----------------|-------------|----------------------------|
 |brasil	          |71	          |7,8%|
 |carros           |68	          |7,5%|
-|economia	        |72           |7,9%|
+|economia	      |72             |7,9%|
 |educacao         |65	          |7,2%|
 |loterias         |71	          |7,9%|
-|mundo	           |72	          |7,9%|
+|mundo	          |72	          |7,9%|
 |musica	          |69	          |7,6%|
 |natureza         |75	          |8,3%|
 |planeta-bizarro  |74	          |8,1%|
-|politica         |72           |7,9%|
+|politica         |72             |7,9%|
 |pop-arte         |65	          |7,1%|
 |tecnologia	      |67	          |7,4%|
 |turismo-e-viagem |68	          |7,5%|
@@ -143,20 +143,20 @@ pertinente, forneça também estatísticas úteis de cada divisão. -->
 
 |Número de notícias por categoria|
 |:Categoria:	    |: Quantidade:	|: Porcentagem de composição:|
-|-------------------|-------------|----------------------------|
+|-------------------|-------------  |----------------------------|
 |brasil	            | 18	        |6,9%                        |
 |carros	            | 20	        |7,7%                        |
 |economia           | 18	        |6,9%                        |
 |educacao           | 23	        |8,8%                        |
 |loterias           | 22	        |8,4%                        |
-|mundo	             | 13         |5,0%                        |
+|mundo	            | 13            |5,0%                        |
 |musica	            | 20	        |7,7%                        |
 |natureza           | 19	        |7,3%                        |
 |planeta-bizarro    | 19	        |7,3%                        |
 |politica           | 20	        |7,7%                        |
-|pop-arte	          | 25         |9,6%                        |
+|pop-arte	        | 25            |9,6%                        |
 |tecnologia	        | 24	        |9,2%                        |
-|turismo-e-viagem	  |20	         |7,7%                        |
+|turismo-e-viagem	|20	            |7,7%                        |
 
 
 Distribuição de documentos aglutinados por tamanho (medido em notícias)
@@ -179,14 +179,14 @@ Distribuição de documentos aglutinados por tamanho (medido em notícias)
 |carros	           |12	           |9,2%|
 |economia          |10	           |7,7%|
 |educacao          |12	           |9,2%|
-|loterias          |7	            |5,4%|
-|mundo	            |15	           |11,5%|
+|loterias          |7	           |5,4%|
+|mundo	           |15	           |11,5%|
 |musica            |11	           |8,5%|
-|natureza          |6	            |4,6%|
-|planeta-bizarro   |7	            |5,4%
-|politica          |8	            |6,2%|
+|natureza          |6	           |4,6%|
+|planeta-bizarro   |7	           |5,4%
+|politica          |8	           |6,2%|
 |pop-arte          |10	           |7,7%|
-|tecnologia	       |9	            |6,9%|
+|tecnologia	       |9	           |6,9%|
 |turismo-e-viagem  |12	           |9,2%|
 
 
