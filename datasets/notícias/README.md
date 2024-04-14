@@ -1,4 +1,4 @@
-# Dataset Card para [Noticias publicadas no Brasil]
+# Dataset Card para [Notícias publicadas no Brasil]
 
 ## Dados Gerais
 
