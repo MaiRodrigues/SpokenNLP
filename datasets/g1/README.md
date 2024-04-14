@@ -9,7 +9,7 @@ construindo um dataset novo, preencha apenas o nome do dataset. -->
 
 - **Nome:** [Notícias G1]
 - **Página WEB:** [Página WEB do dataset]
-- **Repositório:** [Repositório para baixar o dataset]
+- **Repositório:** [(https://github.com/CPqD/resid2023-nlp-6/edit/main/datasets/g1)]
 - **Artigo:** [Link do artigo relacionado ao dataset]
 - **Licença:** [Licença do dataset]
 
@@ -53,7 +53,7 @@ descreva a modificação realizada e as ferramentas usadas. -->
 
 |data                          |url_noticia                                           |url_noticia_curto                                   |titulo              |conteudo_noticia                              |assunto                                                                 |
 |----                          |-----------                                           |-----------------                                   |------              |----------------                              |-------                                                                 |
-|data de publicação da notícia |endereço da página com a notícia salva no web.archive |endereço da página com a notícia no portal original |título da notícia   |Texto principal da notícia                    |Assunto da notícia (esporte, economia, política, tecnologia ou famosos)|
+|data de publicação da notícia |endereço da página com a notícia salva no web.archive |endereço da página com a notícia no portal original |título da notícia   |Texto principal da notícia                    |Assunto da notícia (esportes, economia, política, tecnologia ou famosos)|
 |2013-12-31 a 2020-04-20       |10106 unique values                                   |10089 unique values                                 |10087 unique values |10081 unique values                           |esportes 60%, economia 15%,  Other (2516) 25% |
 ### Amostras
 
