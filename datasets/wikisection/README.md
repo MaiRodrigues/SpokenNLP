@@ -20,7 +20,7 @@ idiomas presentes, o domínio dos dados.] -->
 [dumps.wikimedia.org/enwiki/20180101/](https://dumps.wikimedia.org/enwiki/) (inglês) e [dumps.wikimedia.org/dewiki/20180101/](https://dumps.wikimedia.org/dewiki/) (alemão).
 [ Os conjuntos de dados são filtrados por instâncias das classes Wikidata [Q12136](https://www.wikidata.org/wiki/Q12136)  (doença) e [Q515](https://www.wikidata.org/wiki/Q515)  (cidade)]
 
- 
+A versão traduzida do conjunto, feita pela equipe de desenvolvimento, pode ser encontrada em (https://drive.google.com/drive/folders/1obc4ljr_-kdY_NdPqHGKd6pTPv-GDHd_?usp=sharing).
 
 ### Utilização Pretendida
 

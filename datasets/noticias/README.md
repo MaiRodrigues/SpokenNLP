@@ -26,6 +26,8 @@ construindo um dataset novo, preencha apenas o nome do dataset. -->
 |Assunto: assunto da matéria (esportes, economia, política ou famosos)|
 ]
 
+O conjunto de dados pode ser encontrado em (https://drive.google.com/file/d/1NnU1oAyU0FhukXOEYsra3JmGD8TR4p7r/view?usp=drive_link).
+
 ## Utilização Pretendida
 
 <!-- Indique quais as tarefas de NLP podem utilizar este dataset. Por exemplo, 
