@@ -54,8 +54,8 @@ Para prepará-lo para as etapas de treinamento, realizou-se as seguintes etapas:
 |dataset|Historico_de_materias| 
 |-------|---------------------|
 |idioma|Portuguese|
-|# docs|5722|
-|# docs utilizados| 3376 |
+|Número de notícias|5722|
+|Número de notícias utilizadas| 3376 |
 
 O primeiro *dataframe* gerado da extração possui a seguinte estrutura:
 
@@ -136,7 +136,7 @@ pertinente, forneça também estatísticas úteis de cada divisão. -->
 Número de notícias por categoria
 
 
-|:Categoria: |: Quantidade: | : Porcentagem de composição: |
+|Categoria | Quantidade |  Porcentagem de composição |
 |--------|------------|------------------------------------|
 |economicas  | 1535         | 58,1%                               |
 |sociais  | 396         | 15,0%                               |                                        
@@ -156,7 +156,7 @@ Número de notícias por categoria
 
 Distribuição de documentos aglutinados por tamanho (medido em notícias)
 
-|:n° notícias:| :n° frequência:|
+|n° notícias| n° frequência|
 |--------|---------------|
 |1       | 258             |
 |2       | 282             |
@@ -173,7 +173,7 @@ Distribuição de documentos aglutinados por tamanho (medido em notícias)
 Número de notícias por categoria
 
 
-|:Categoria: |: Quantidade: | : Porcentagem de composição: |
+|Categoria | Quantidade |  Porcentagem de composição |
 |--------|------------|------------------------------------|
 |economicas  | 446         | 59,1%                               |
 |sociais  | 109         | 14,44%                               |                                        
@@ -194,7 +194,7 @@ Número de notícias por categoria
 
 Distribuição de documentos aglutinados por tamanho (medido em notícias)
 
-|:n° notícias:| :n° frequência:|
+|n° notícias| n° frequência|
 |--------|---------------|
 |1       | 65             |
 |2       | 79             |
@@ -211,7 +211,7 @@ Distribuição de documentos aglutinados por tamanho (medido em notícias)
 Número de notícias por categoria - conjunto de validação:
 
 
-|:Categoria: |: Quantidade: | : Porcentagem de composição: |
+|Categoria | Quantidade |  Porcentagem de composição |
 |--------|------------|------------------------------------|
 |economicas  | 227         | 60,0%                               |
 |sociais  | 51         | 13,5%                               |                                        
@@ -231,7 +231,7 @@ Número de notícias por categoria - conjunto de validação:
 
 Distribuição de documentos aglutinados por tamanho (medido em notícias)
 
-|:n° notícias:| :n° frequência:|
+|n° notícias| n° frequência|
 |--------|---------------|
 |1       | 44             |
 |2       | 42             |

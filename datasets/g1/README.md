@@ -166,7 +166,7 @@ pertinente, forneça também estatísticas úteis de cada divisão. -->
 Número de notícias por categoria
 
 
-|:Categoria: |: Quantidade: | : Porcentagem de composição: |
+|Categoria | Quantidade |  Porcentagem de composição |
 |--------|------------|------------------------------------|
 |brasil  | 71         | 7,8%                               |
 |carros  | 68         | 7,5%                               |                                        
@@ -184,7 +184,7 @@ Número de notícias por categoria
 
 Distribuição de documentos aglutinados por tamanho (medido em notícias)
 
-|:n° notícias:| :n° frequência:|
+|Número notícias| Número frequência|
 |--------|---------------|
 |1       | 69             |
 |2       | 72             |
@@ -202,7 +202,7 @@ Distribuição de documentos aglutinados por tamanho (medido em notícias)
 Número de notícias por categoria
 
 
-|:Categoria: |: Quantidade: | : Porcentagem de composição: |
+|Categoria | Quantidade |  Porcentagem de composição |
 |--------|------------|------------------------------------|
 |brasil  | 18         | 6,9%                               |
 |carros  | 20         | 7,7%                               |                                        
@@ -220,7 +220,7 @@ Número de notícias por categoria
 
 Distribuição de documentos aglutinados por tamanho (medido em notícias)
 
-|:n° notícias:| :n° frequência:|
+|Número notícias| Número frequência|
 |--------|---------------|
 |1       | 19             |
 |2       | 21             |
@@ -238,7 +238,7 @@ Distribuição de documentos aglutinados por tamanho (medido em notícias)
 Número de notícias por categoria - conjunto de validação:
 
 
-|:Categoria: |: Quantidade: | : Porcentagem de composição: |
+|Categoria | Quantidade |  Porcentagem de composição |
 |--------|------------|------------------------------------|
 |brasil  | 11         | 8,5%                               |
 |carros  | 12         | 9,2%                               |                                        
@@ -256,7 +256,7 @@ Número de notícias por categoria - conjunto de validação:
 
 Distribuição de documentos aglutinados por tamanho (medido em notícias)
 
-|:n° notícias:| :n° frequência:|
+|Número notícias| Número frequência|
 |--------|---------------|
 |1       | 11             |
 |2       | 8             |
