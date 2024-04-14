@@ -1,4 +1,4 @@
-# Dataset Card para [Noticias publicadas no Brasil]
+# Dataset Card para [Noticias publicadas no Portal G1]
 
 ## Dados Gerais
 
@@ -18,7 +18,7 @@ construindo um dataset novo, preencha apenas o nome do dataset. -->
 
 Este conjunto de dados contém notícias extraídas do repositório de notícias do G1 (Portal de notícias *online* da Globo) no formato *RSS* (*Rich Site Summary*), atualizado pela última vez em 08/11/2012 (disponível em: https://g1.globo.com/tecnologia/noticia/2012/11/siga-o-g1-por-rss.html). Os arquivos foram submetidos a pré-processamentos para aderirem ao formato do modelo a ser utilizado no projeto.
 
-
+O conjunto de dados ao qual este documento se refere pode ser encontrado em (https://drive.google.com/file/d/1b4cLjkJc5TBYdtq_EY144RffRuEB4hyJ/view?usp=drive_link).
 
 ## Utilização Pretendida
 

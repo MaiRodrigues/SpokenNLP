@@ -16,7 +16,7 @@ construindo um dataset novo, preencha apenas o nome do dataset. -->
 * Os principais idiomas presentes.
 * O domínio dos dados. -->
 
-Este conjunto de dados foi feito com base em notícias obtidas da *API* de notícias do *IBGE (https://servicodados.ibge.gov.br/api/docs/noticias?versao=3), extraindo-se os textos delas através de técnicas de *web-scrapping*.
+Este conjunto de dados foi feito com base em notícias obtidas da *API* de notícias do *IBGE (https://servicodados.ibge.gov.br/api/docs/noticias?versao=3), extraindo-se os textos delas através de técnicas de *web-scrapping*. Ele pode ser encontrado em (https://drive.google.com/file/d/14bF1uEUii2EWRwpt8IFhtfqce0aSyM9n/view?usp=drive_link).
 
 ## Utilização Pretendida
 
