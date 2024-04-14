@@ -7,10 +7,6 @@ do dataset original. Se você está combinando ou alterando datasets, ou está
 construindo um dataset novo, preencha apenas o nome do dataset. -->
 
 - **Nome:** [Notícias publicadas no Brasil]
-- **Página WEB:** [Página WEB do dataset]
-- **Repositório:** [Repositório para baixar o dataset]
-- **Artigo:** [Link do artigo relacionado ao dataset]
-- **Licença:** [Licença do dataset]
 
 ## Resumo
 
