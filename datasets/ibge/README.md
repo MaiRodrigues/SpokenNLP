@@ -51,31 +51,13 @@ Para prepará-lo para as etapas de treinamento, realizou-se as seguintes etapas:
 
 ## Estrutura
 
+Seguem algumas características gerais do conjunto de dados:
+
 |dataset|Historico_de_materias| 
 |-------|---------------------|
 |idioma|Portuguese|
 |Número de notícias|5722|
 |Número de notícias utilizadas| 3376 |
-
-O primeiro *dataframe* gerado da extração possui a seguinte estrutura:
-
-
-| Campo | Descrição | 
-|-------|---------------------|
-| title |Título da notícia|
-| description | Corpo da notícia |
-| category | Categoria da notícia |
-
-Os arquivos gerados para entrada ao modelo **Segformer** possuem o seguinte formato:
-
-```text
-========== ; category_1; category_1
-description_1
-========== ; category_2; category_2
-description_2
-.....
-```
-, no qual **category_n** representa a categoria da notícia **n** do arquivo e **description_n** o texto do mesmo (com 1 <= **n** <= 5). O modelo escolhido utiliza apenas a primeira ocorrência de **category_n** no arquivo (entre os delimitadors "========== ;" e ";"), sendo a segunda necessária apenas porque a entrada do modelo a atribui como obrigatória (não a utilizando no processamento interno). 
 
 Na próxima seção, são exibidas amostras do *dataset* nos dois estágios descritos.
 
@@ -114,10 +96,29 @@ Comunicação Social23 de maio de 2017
 <!-- Indique e descreva os campos presentes no dataset. Informe o tipo do campo. 
 Se for um campo de categoria, informe os valores possíveis. -->
 
-| Campo | Descrição | 
-|-------|---------------------|
-| texto | Corpo da notícia|
-| editoria | Categoria da notícia |
+A resposta da requisição à *API* contêm uma lista de notícias chamada **items**. Cada elemento dela possui dois campos que vale destacar para a construção deste conjunto:
+
+- **editorias**: categoria à qual a notícia pertence;
+- **link**: *URL* da página *web* da notícia;
+
+Para informações sobre os outros atributos da resposta, consultar a documentação da *API* presente em (https://servicodados.ibge.gov.br/api/docs/noticias?versao=3). 
+
+O primeiro estágio do conjunto (*dataframe* **Pandas**) possui a seguinte estrutura:
+
+- **texto:** corpo da notícia (extraído a partir de *web-scrapping* da página hospedada na *URL* do campo **link**);
+- **editorias:** categoria da notícia (mesmo campo de cada item da resposta);
+
+Os arquivos gerados para entrada ao modelo **Segformer** possuem o seguinte formato:
+
+```text
+========== ; editorias_1; editorias_1
+texto_1
+========== ; editorias_2; editorias_2
+texto_2
+.....
+```
+, no qual **editorias_n** representa a categoria da notícia **n** (campo **editorias**) do arquivo e **texto_n** o texto do mesmo (campo **texto**, com 1 <= **n** <= 5). O modelo escolhido utiliza apenas a primeira ocorrência de **editorias_n** no arquivo (entre os delimitadores "========== ;" e ";"), sendo a segunda necessária apenas porque a entrada do modelo a atribui como obrigatória (não a utilizando no processamento interno). 
+
 
 ### Divisão dos Dados
 
@@ -156,7 +157,7 @@ Número de notícias por categoria
 
 Distribuição de documentos aglutinados por tamanho (medido em notícias)
 
-|n° notícias| n° frequência|
+|Número de notícias| Frequência |
 |--------|---------------|
 |1       | 258             |
 |2       | 282             |
@@ -194,7 +195,7 @@ Número de notícias por categoria
 
 Distribuição de documentos aglutinados por tamanho (medido em notícias)
 
-|n° notícias| n° frequência|
+|Número de notícias| Frequência|
 |--------|---------------|
 |1       | 65             |
 |2       | 79             |
@@ -231,7 +232,7 @@ Número de notícias por categoria - conjunto de validação:
 
 Distribuição de documentos aglutinados por tamanho (medido em notícias)
 
-|n° notícias| n° frequência|
+|Número de notícias| Frequência |
 |--------|---------------|
 |1       | 44             |
 |2       | 42             |
