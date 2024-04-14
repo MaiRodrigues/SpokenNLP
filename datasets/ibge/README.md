@@ -1,4 +1,4 @@
-# Dataset Card para [Noticias do IBGE]
+# Dataset Card para [Notícias do IBGE]
 
 ## Dados Gerais
 
