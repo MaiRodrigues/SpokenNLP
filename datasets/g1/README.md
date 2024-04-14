@@ -60,27 +60,7 @@ A tabela abaixo mostra alguns dados gerais do *dataset* construído:
 |Número de documentos total |1300|
 |Número de documentos utilizados| 1300 |
 
-O primeiro *dataframe* gerado da extração possui a seguinte estrutura:
-
-| Campo | Descrição | 
-|-------|---------------------|
-| title |Título da notícia|
-| description | Corpo da notícia (obtido através de extração da resposta em formato XML) |
-| category | Categoria da notícia (extraída da URL da requisição) |
-
-Os arquivos gerados para entrada ao modelo **Segformer** possuem o seguinte formato:
-
-```text
-========== ; category_1; category_1
-description_1
-========== ; category_2; category_2
-description_2
-.....
-```
-, no qual **category_n** representa a categoria da notícia **n** do arquivo e **description_n** o texto do mesmo (com 1 <= **n** <= 5). O modelo escolhido utiliza apenas a primeira ocorrência de **category_n** no arquivo (entre os delimitadors "========== ;" e ";"), sendo a segunda necessária apenas porque a entrada do modelo a atribui como obrigatória (não a utilizando no processamento interno). 
-
-Na próxima seção, são exibidas amostras do *dataset* nos dois estágios descritos.
-
+Na próxima seção, são mostradas algumas amostras do *dataset*.
 
 ### Amostras
 
@@ -125,11 +105,21 @@ Dupla Sena de Páscoa: Bolão de Goiânia ganha R$ 17 milhões
 <!-- Indique e descreva os campos presentes no dataset. Informe o tipo do campo. 
 Se for um campo de categoria, informe os valores possíveis. -->
 
-| Campo | Descrição | 
-|-------|---------------------|
-| title |Título da notícia|
-| description | Corpo da notícia (obtido através de extração da resposta em formato XML) |
-| category | Categoria da notícia (extraída da URL da requisição) |
+A resposta às requisições feitas à rota `GET https://g1.globo.com/rss/g1/{categoria}` são retornadas em formato *XML*, e contêm, em sua hierarquia, uma lista de elementos chamada **items** dentro de **channel** -> **image**. Cada um desses elementos possui a seguinte forma:
+
+
+- **title:** título da notícia 
+- **link:** URL da  página da notícia
+- **description:** corpo da notícia  
+- **category:** categoria da notícia (sempre é G1) 
+- **pubDate:** data de publicação 
+
+Para a elaboração do primeiro estágio (criação do *dataframe* Pandas), projeta-se um subconjunto desses atributos: **title**, **description** e **category**. Como, para todas as notícias, o valor do último atributo é sempre **G1**, ele é sobrescrito com o parâmetro **{categoria}** da *URL* da requisição. Além disso, o texto presente em **description** é processado para a remoção de alguns demarcadores padrões retornados pela rota. Seguem os seus campos e suas respectivas descrições:
+
+
+- **title:** título da notícia
+- **description:** corpo da notícia (com remoção de demarcadores) |
+- **category:** categoria da notícia (extraída da URL da requisição) |
 
 O campo categoria representa o tema da notícia, e a relação entre os seus valores e as seções de notícias do portal é dada pela seguinte tabela:
 
@@ -148,6 +138,18 @@ O campo categoria representa o tema da notícia, e a relação entre os seus val
 | pop-arte | Pop & Arte |
 | tecnologia | Tecnologia & Games |
 | turismo-e-viagem | Turismo & Viagem |
+
+Os arquivos gerados para entrada ao modelo **Segformer** possuem o seguinte formato:
+
+```text
+========== ; category_1; category_1
+description_1
+========== ; category_2; category_2
+description_2
+.....
+```
+, no qual **category_n** representa a categoria (campo **category** anteriormente mencionado) da notícia  **n** do arquivo e **description_n** (campo **description** anteriormente mencionado) o texto do mesmo (com 1 <= **n** <= 5). O modelo escolhido utiliza apenas a primeira ocorrência de **category_n** no arquivo (entre os delimitadors "========== ;" e ";"), sendo a segunda necessária apenas porque a entrada do modelo a atribui como obrigatória (não a utilizando no processamento interno). 
+
 
 ### Divisão dos Dados
 
