@@ -126,6 +126,7 @@ texto_2
 treinamento, validação e teste. Forneça os tamanhos das divisões. Se achar
 pertinente, forneça também estatísticas úteis de cada divisão. -->
 
+Nas próximas subseções, seguem informações e estatísticas acerca dos subconjuntos gerados a partir da divisão do *dataset*.
 
 #### Treino
 - Tamanho (medido em notícias): 2643
