@@ -159,7 +159,7 @@ pertinente, forneça também estatísticas úteis de cada divisão. -->
 
 
 #### Treino
-- Tamanho: 909
+- Tamanho (medido em notícias): 909
 - Número de palavras: 630435
 - Número de sentenças: 23148
 - Número de documentos gerados: 319
@@ -186,7 +186,7 @@ Número de notícias por categoria
 
 Distribuição de documentos aglutinados por tamanho (medido em notícias)
 
-|Número notícias| Número frequência|
+|Número de notícias| Frequência |
 |--------|---------------|
 |1       | 69             |
 |2       | 72             |
@@ -196,7 +196,7 @@ Distribuição de documentos aglutinados por tamanho (medido em notícias)
 
 
 #### Teste
-- Tamanho: 261
+- Tamanho (medido em notícias): 261
 - Número de palavras: 186426
 - Número de sentenças: 6967
 - Número de documentos gerados: 89
@@ -222,7 +222,7 @@ Número de notícias por categoria
 
 Distribuição de documentos aglutinados por tamanho (medido em notícias)
 
-|Número notícias| Número frequência|
+|Número de notícias| Frequência |
 |--------|---------------|
 |1       | 19             |
 |2       | 21             |
@@ -231,7 +231,7 @@ Distribuição de documentos aglutinados por tamanho (medido em notícias)
 |5       | 19             |
 
 #### Validação
-- Tamanho: 130
+- Tamanho (medido em notícias): 130
 - Número de palavras: 91984
 - Número de sentenças: 3295
 - Número de documentos gerados: 46
@@ -258,7 +258,7 @@ Número de notícias por categoria - conjunto de validação:
 
 Distribuição de documentos aglutinados por tamanho (medido em notícias)
 
-|Número notícias| Número frequência|
+|Número de notícias| Frequência |
 |--------|---------------|
 |1       | 11             |
 |2       | 8             |
