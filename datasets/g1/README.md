@@ -26,15 +26,14 @@ O conjunto de dados ao qual este documento se refere pode ser encontrado em (htt
 classificação de texto, reconhecimento de entidades, etc. 
 Nesta seção, você pode detalhar e expandir o que foi apresentado no resumo. -->
 
-[classicacção de texto]
-[modelagem de tópicos]
+O conjunto de dados será utilizado para treinar modelos de segmentação de textos em tópicos.
+
 
 ## Idiomas
 
 <!-- Indique os idiomas presentes no dataset. -->
 
-[Português]
-
+Os textos do *dataset* criado são escritos em Língua Portuguesa.
 ## Criação
 
 <!-- Se o dataset foi construído por você, indique a fonte dos dados usados e
