@@ -29,7 +29,7 @@ O conjunto de dados será utilizado para treinar modelos de segmentação de tex
 ## Idiomas
 
 <!-- Indique os idiomas presentes no dataset. -->
-Os textos do *dataset* são escritos em Língua Portuguesa.
+Os textos do *dataset* criado são escritos em Língua Portuguesa.
 
 ## Criação
 
@@ -116,7 +116,7 @@ texto_1
 texto_2
 .....
 ```
-, no qual **editorias_n** representa a categoria da notícia **n** (campo **editorias**) do arquivo e **texto_n** o texto do mesmo (campo **texto**, com 1 <= **n** <= 5). O modelo escolhido utiliza apenas a primeira ocorrência de **editorias_n** no arquivo (entre os delimitadores "========== ;" e ";"), sendo a segunda necessária apenas porque a entrada do modelo a atribui como obrigatória (não a utilizando no processamento interno). 
+, no qual **editorias_n** representa a categoria da notícia **n** (campo **editorias**) do arquivo e **texto_n** o texto do mesmo (campo **texto**, com 1 <= **n** <= 4). O modelo escolhido utiliza apenas a primeira ocorrência de **editorias_n** no arquivo (entre os delimitadores "========== ;" e ";"), sendo a segunda necessária apenas porque a entrada do modelo a atribui como obrigatória (não a utilizando no processamento interno). 
 
 
 ### Divisão dos Dados
