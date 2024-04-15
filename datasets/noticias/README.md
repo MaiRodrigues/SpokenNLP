@@ -6,7 +6,7 @@
 do dataset original. Se você está combinando ou alterando datasets, ou está
 construindo um dataset novo, preencha apenas o nome do dataset. -->
 
-- **Nome:** [Notícias publicadas no Brasil]
+- **Nome:** Notícias publicadas no Brasil
 
 ## Resumo
 
@@ -16,15 +16,16 @@ construindo um dataset novo, preencha apenas o nome do dataset. -->
 * Os principais idiomas presentes.
 * O domínio dos dados. -->
 
-[Este conjunto de dados contém uma compilação de matérias extraídas dos sites do grupo globo. São mais de 10 mil textos, publicados entre 2014 e 2020, com as seguintes informações:
+Este conjunto de dados contém uma compilação de matérias extraídas dos sites do grupo globo. São mais de 10 mil textos, publicados entre 2014 e 2020, com as seguintes informações:
 
-|Dados: dados em que a matéria foi extraída do site|
-|Url da notícia no web.archive: endereço em que a matéria foi salva no web.archive|
-|Url da notícia: endereço em que a matéria foi publicada no site original|
-|Título: título da matéria|
-|Conteúdo: conteúdo da matéria|
-|Assunto: assunto da matéria (esportes, economia, política ou famosos)|
-]
+|Dados| dados em que a matéria foi extraída do site|
+|---------------------------|--------------------------|
+|Url da notícia no web.archive| endereço em que a matéria foi salva no web.archive|
+|Url da notícia| endereço em que a matéria foi publicada no site original|
+|Título| título da matéria|
+|Conteúdo| conteúdo da matéria|
+|Assunto| assunto da matéria (esportes, economia, política ou famosos)|
+
 
 O conjunto de dados pode ser encontrado em (https://drive.google.com/file/d/1NnU1oAyU0FhukXOEYsra3JmGD8TR4p7r/view?usp=drive_link).
 
@@ -52,37 +53,41 @@ descreva a modificação realizada e as ferramentas usadas. -->
 
 [(https://www.kaggle.com/datasets/diogocaliman/notcias-publicadas-no-brasil)]
 
-[O dataset criado por Diogo Caliman inicialmente continha 10.109 notícias categorizadas em esportes, economia, política, tecnologia e celebridades. Após a limpeza dos valores incorretos e a remoção de 75% das notícias de esportes para balancear o dataset, restaram 1.500 notícias de esportes e 5.564 notícias de outras categorias.
+O dataset criado por Diogo Caliman inicialmente continha 10.109 notícias categorizadas em esportes, economia, política, tecnologia e celebridades. Após a limpeza dos valores incorretos e a remoção de 75% das notícias de esportes para balancear o dataset, restaram 1.500 notícias de esportes e 5.564 notícias de outras categorias.
 
 O dataset foi então dividido em um conjunto de treinamento com 3.895 notícias e um conjunto de teste com 1.669 notícias. No conjunto de treinamento, as categorias foram distribuídas da seguinte forma:
 
-Economia: 1.092 notícias
-Esportes: 1.017 notícias
-Política: 979 notícias
-Tecnologia: 422 notícias
-Famosos: 385 notícias
+- **Economia**: 1.092 notícias
+- **Esportes**: 1.017 notícias
+- **Política**: 979 notícias
+- **Tecnologia**: 422 notícias
+- **Famosos**: 385 notícias
+
+
 No conjunto de teste, as categorias ficaram assim:
 
-Esportes: 474 notícias
-Economia: 466 notícias
-Política: 384 notícias
-Tecnologia: 190 notícias
-Famosos: 155 notícias
+- **Esportes**: 474 notícias
+- **Economia**: 466 notícias
+- **Política**: 384 notícias
+- **Tecnologia**: 190 notícias
+- **Famosos**: 155 notícias
+
 Essa divisão foi feita considerando a distribuição de documentos por categoria em cada conjunto, com diferentes quantidades de documentos por notícia. O objetivo era criar conjuntos balanceados para treinamento e teste do modelo.
 
 O conjunto de treinamento foi composto por 3.895 notícias divididas em documentos com diferentes quantidades de notícias por documento:
 
-895 documentos com 5 notícias cada
-1000 documentos com 4 notícias cada
-1500 documentos com 3 notícias cada
-500 documentos com 2 notícias cada
+- 895 documentos com 5 notícias cada
+- 1000 documentos com 4 notícias cada
+- 1500 documentos com 3 notícias cada
+- 500 documentos com 2 notícias cada
+
 Já o conjunto de teste foi composto por 1.669 notícias divididas da seguinte forma:
 
-385 documentos com 5 notícias cada
-416 documentos com 4 notícias cada
-651 documentos com 3 notícias cada
-218 documentos com 2 notícias cada
-]
+- 385 documentos com 5 notícias cada
+- 416 documentos com 4 notícias cada
+- 651 documentos com 3 notícias cada
+- 218 documentos com 2 notícias cada
+
 
 ## Estrutura
 
@@ -123,7 +128,7 @@ distribuição dos dados coletados, etc. -->
 Se for um campo de categoria, informe os valores possíveis. -->
 
 
-|:dados de publicação da notícia:|:endereço da página com a notícia salva no web.archive:|:endereço da página com a notícia no portal original:|:título da notícia:|:Texto principal da notícia:|:Assunto da notícia (esportes, economia, política, tecnologia ou famosos):|  
+|dados de publicação da notícia|endereço da página com a notícia salva no web.archive|endereço da página com a notícia no portal original|título da notícia|Texto principal da notícia|Assunto da notícia (esportes, economia, política, tecnologia ou famosos)|  
  |-|-|-|-|-|-|
   |31/12/2013 a 2020-04-20         |10106 endereços únicos                                  |10089 valores únicos                               | 10087 valores únicos      |10081 valores únicos        |  Esportes 60%,  Economia 15%,  Outro (2516)  25%                         |
 ### Divisão dos Dados
@@ -132,7 +137,7 @@ Se for um campo de categoria, informe os valores possíveis. -->
 treinamento, validação e teste. Forneça os tamanhos das divisões. Se achar
 pertinente, forneça também estatísticas úteis de cada divisão. -->
 
-|:Treino:| :n° documentos:|
+|Treino| n° documentos|
 |--------|---------------|
 |895     | 5             |
 |1000    | 4             |
@@ -140,14 +145,14 @@ pertinente, forneça também estatísticas úteis de cada divisão. -->
 |500     | 2             |
 
 
-|:Teste:| :n° documentos:|
+|Teste| n° documentos|
 |-------|---------------|
 |385    | 5             |
 |416    | 4             |
 |651    | 1             |
 |218    | 2             |
 
-|:Teste: |:Assunto:   |
+|Teste |Assunto   |
 |--------|------------|
 |474     | esportes   |
 |466     | economia   |
