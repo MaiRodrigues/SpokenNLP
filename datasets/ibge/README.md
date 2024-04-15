@@ -24,14 +24,12 @@ Este conjunto de dados foi feito com base em notícias obtidas da *API* de notí
 classificação de texto, reconhecimento de entidades, etc. 
 Nesta seção, você pode detalhar e expandir o que foi apresentado no resumo. -->
 
-[classicacção de texto]
-[modelagem de tópicos]
+O conjunto de dados será utilizado para treinar modelos de segmentação de textos em tópicos.
 
 ## Idiomas
 
 <!-- Indique os idiomas presentes no dataset. -->
-
-[Português]
+Os textos do *dataset* são escritos em Língua Portuguesa.
 
 ## Criação
 
@@ -58,6 +56,7 @@ Seguem algumas características gerais do conjunto de dados:
 |idioma|Portuguese|
 |Número de notícias|5722|
 |Número de notícias utilizadas| 3376 |
+Tabela 1: Estatísticas Gerais do *dataset*.
 
 Na próxima seção, são exibidas amostras do *dataset* nos dois estágios descritos.
 
@@ -135,7 +134,7 @@ Nas próximas subseções, seguem informações e estatísticas acerca dos subco
 - Número de documentos gerados: 1062
 
 
-Número de notícias por categoria
+Número de notícias por categoria:
 
 
 |Categoria | Quantidade |  Porcentagem de composição |
@@ -156,7 +155,7 @@ Número de notícias por categoria
 |revistasretratos;ibge| 1 | 0,04%                                |
 |sociais;censo2020| 0 | 0,0%                                |
 
-Distribuição de documentos aglutinados por tamanho (medido em notícias)
+Distribuição de documentos aglutinados por tamanho (medido em notícias):
 
 |Número de notícias| Frequência |
 |--------|---------------|
@@ -172,7 +171,7 @@ Distribuição de documentos aglutinados por tamanho (medido em notícias)
 - Número de sentenças: 17918
 - Número de documentos gerados: 299
 
-Número de notícias por categoria
+Número de notícias por categoria:
 
 
 |Categoria | Quantidade |  Porcentagem de composição |
@@ -194,7 +193,7 @@ Número de notícias por categoria
 |revistasretratos;ibge| 0 | 0%                                |
 
 
-Distribuição de documentos aglutinados por tamanho (medido em notícias)
+Distribuição de documentos aglutinados por tamanho (medido em notícias):
 
 |Número de notícias| Frequência|
 |--------|---------------|
@@ -210,7 +209,7 @@ Distribuição de documentos aglutinados por tamanho (medido em notícias)
 - Número de documentos gerados: 156
 
 
-Número de notícias por categoria - conjunto de validação:
+Número de notícias por categoria:
 
 
 |Categoria | Quantidade |  Porcentagem de composição |
@@ -231,7 +230,7 @@ Número de notícias por categoria - conjunto de validação:
 |sociais;censo2020| 0 | 0,1%                                |
 |revistasretratos;ibge| 0 | 0%                                |
 
-Distribuição de documentos aglutinados por tamanho (medido em notícias)
+Distribuição de documentos aglutinados por tamanho (medido em notícias):
 
 |Número de notícias| Frequência |
 |--------|---------------|

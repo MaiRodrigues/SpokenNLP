@@ -52,13 +52,14 @@ Para prepará-lo para as etapas de treinamento, realizou-se as seguintes etapas:
 
 ## Estrutura
 
-A tabela abaixo mostra alguns dados gerais do *dataset* construído:
+A Tabela 1 mostra alguns dados gerais do *dataset* construído:
 
 |dataset|Notícias G1| 
 |-------|---------------------|
 |idioma|português|
 |Número de documentos total |1300|
 |Número de documentos utilizados| 1300 |
+Tabela 1: Estatísticas Gerais do *dataset*.
 
 Na próxima seção, são mostradas algumas amostras do *dataset*.
 
@@ -121,7 +122,7 @@ Para a elaboração do primeiro estágio (criação do *dataframe* Pandas), proj
 - **description:** corpo da notícia (com remoção de demarcadores) |
 - **category:** categoria da notícia (extraída da URL da requisição) |
 
-O campo categoria representa o tema da notícia, e a relação entre os seus valores e as seções de notícias do portal é dada pela seguinte tabela:
+O campo categoria representa o tema da notícia, e a relação entre os seus valores e as seções de notícias do portal é dada pela Tabela 2:
 
 |Valor do campo|Seção         | 
 |--------------|---------------------|
@@ -138,6 +139,7 @@ O campo categoria representa o tema da notícia, e a relação entre os seus val
 | pop-arte | Pop & Arte |
 | tecnologia | Tecnologia & Games |
 | turismo-e-viagem | Turismo & Viagem |
+Tabela 2: Relação do campo **category** com as seções de notícias do portal.
 
 Os arquivos gerados para entrada ao modelo **Segformer** possuem o seguinte formato:
 
@@ -166,7 +168,7 @@ Nas próximas subseções, seguem informações e estatísticas acerca dos subco
 - Número de documentos gerados: 319
 
 
-Número de notícias por categoria
+Número de notícias por categoria:
 
 
 |Categoria | Quantidade |  Porcentagem de composição |
@@ -185,7 +187,7 @@ Número de notícias por categoria
 |tecnologia| 67       | 7,4%                               |                                        
 |turismo-e-viagem| 68 | 7,5%                               |
 
-Distribuição de documentos aglutinados por tamanho (medido em notícias)
+Distribuição de documentos aglutinados por tamanho (medido em notícias):
 
 |Número de notícias| Frequência |
 |--------|---------------|
@@ -202,7 +204,7 @@ Distribuição de documentos aglutinados por tamanho (medido em notícias)
 - Número de sentenças: 6967
 - Número de documentos gerados: 89
 
-Número de notícias por categoria
+Número de notícias por categoria:
 
 
 |Categoria | Quantidade |  Porcentagem de composição |
@@ -221,7 +223,7 @@ Número de notícias por categoria
 |tecnologia| 24       | 9,2%                               |                                        
 |turismo-e-viagem| 20 | 7,7%                               |
 
-Distribuição de documentos aglutinados por tamanho (medido em notícias)
+Distribuição de documentos aglutinados por tamanho (medido em notícias):
 
 |Número de notícias| Frequência |
 |--------|---------------|
@@ -238,7 +240,7 @@ Distribuição de documentos aglutinados por tamanho (medido em notícias)
 - Número de documentos gerados: 46
 
 
-Número de notícias por categoria - conjunto de validação:
+Número de notícias por categoria:
 
 
 |Categoria | Quantidade |  Porcentagem de composição |
@@ -257,7 +259,7 @@ Número de notícias por categoria - conjunto de validação:
 |tecnologia| 9       | 6,9%                               |                                        
 |turismo-e-viagem| 12 | 9,2%                               |
 
-Distribuição de documentos aglutinados por tamanho (medido em notícias)
+Distribuição de documentos aglutinados por tamanho (medido em notícias):
 
 |Número de notícias| Frequência |
 |--------|---------------|
