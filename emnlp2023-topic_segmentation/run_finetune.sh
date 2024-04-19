@@ -7,13 +7,13 @@ PORT_ID=$(expr $RANDOM + 1000)
 export OMP_NUM_THREADS=8
 
 metric_name=./src/metrics/seqeval.py
-#model_root_folder=./pretrained_models
+model_root_folder=./pretrained_models
 
 max_seq_length=512
 #max_seq_length=2048
 
 # value should be folder name of pretrained_model
-model_name= 'google-bert/bert-base-uncased'
+model_name='google-bert/bert-base-uncased'
 # model_name=electra_base
 # model_name=bigbird_base
 #model_name=longformer_base
