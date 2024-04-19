@@ -1,4 +1,4 @@
-export CUDA_VISIBLE_DEVICES=0,1
+export CUDA_VISIBLE_DEVICES=0
 NUM_GPU=1
 echo $CUDA_VISIBLE_DEVICES
 echo $NUM_GPU
@@ -9,23 +9,23 @@ export OMP_NUM_THREADS=8
 metric_name=./src/metrics/seqeval.py
 model_root_folder=./pretrained_models
 
-# max_seq_length=512
-max_seq_length=2048
+max_seq_length=512
+#max_seq_length=2048
 
 # value should be folder name of pretrained_model
-# model_name=bert_base
+model_name=bert_base
 # model_name=electra_base
 # model_name=bigbird_base
-model_name=longformer_base
+#model_name=longformer_base
 
-#dataset=wiki_section
-dataset=wiki_section_disease
+dataset=wiki_section
+#dataset=wiki_section_disease
 # dataset=wiki727k
 
 dataset_cache_dir=./cached_data/${dataset}_${model_name}_${max_seq_length}
 
-# num_train_epochs=3
-num_train_epochs=5
+num_train_epochs=3
+# num_train_epochs=5
 lr=5e-5
 per_device_train_batch_size=2
 gradient_accumulation_steps=2
@@ -34,16 +34,16 @@ do_da_ts=True
 do_cssl=True
 do_tssp=True
 
-ts_loss_weight=1.0
+#ts_loss_weight=1.0
 
-# cl_loss_weight=0.0
-cl_loss_weight=0.5
+cl_loss_weight=0.0
+#cl_loss_weight=0.5
 cl_temp=0.1
 cl_anchor_level=eop_list
 cl_positive_k=1
 cl_negative_k=3
 
-# tssp_loss_weight=0.0
+#tssp_loss_weight=0.0
 tssp_loss_weight=1.0    # for wiki_section
 # tssp_loss_weight=0.5    # for wiki727k
 
@@ -57,8 +57,8 @@ for seed in 42 59 88; do
   echo "write log into "${LOGFILE}
   echo $CUDA_VISIBLE_DEVICES >> ${LOGFILE}
 
-  # python ./src/ts_sentence_seq_labeling.py \
-  TORCH_DISTRIBUTED_DEBUG=DETAIL python -m torch.distributed.launch --nproc_per_node $NUM_GPU --master_port $PORT_ID ./src/ts_sentence_seq_labeling.py \
+  python ./src/ts_sentence_seq_labeling.py \
+  #TORCH_DISTRIBUTED_DEBUG=DETAIL python -m torch.distributed.launch --nproc_per_node $NUM_GPU --master_port $PORT_ID ./src/ts_sentence_seq_labeling.py \
     --model_name_or_path ${model_root_folder}/${model_name} \
     --dataset_name ./src/datasets/${dataset} \
     --dataset_cache_dir ${dataset_cache_dir} \
