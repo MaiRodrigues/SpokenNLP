@@ -13,7 +13,7 @@ max_seq_length=512
 #max_seq_length=2048
 
 # value should be folder name of pretrained_model
-model_name=bert_base
+model_name= 'google-bert/bert-base-uncased'
 # model_name=electra_base
 # model_name=bigbird_base
 #model_name=longformer_base
