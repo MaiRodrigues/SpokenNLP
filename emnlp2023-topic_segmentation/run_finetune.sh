@@ -7,7 +7,7 @@ PORT_ID=$(expr $RANDOM + 1000)
 export OMP_NUM_THREADS=8
 
 metric_name=./src/metrics/seqeval.py
-model_root_folder=./pretrained_models
+#model_root_folder=./pretrained_models
 
 max_seq_length=512
 #max_seq_length=2048
@@ -59,7 +59,7 @@ for seed in 42 59 88; do
 
   python ./src/ts_sentence_seq_labeling.py \
   #TORCH_DISTRIBUTED_DEBUG=DETAIL python -m torch.distributed.launch --nproc_per_node $NUM_GPU --master_port $PORT_ID ./src/ts_sentence_seq_labeling.py \
-    --model_name_or_path ${model_root_folder}/${model_name} \
+    --model_name_or_path ${model_name} \
     --dataset_name ./src/datasets/${dataset} \
     --dataset_cache_dir ${dataset_cache_dir} \
     --metric_name ${metric_name} \
