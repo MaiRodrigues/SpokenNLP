@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Initially taken from Github's Python gitignore file
 
 # Byte-compiled / optimized / DLL files
@@ -161,3 +162,14 @@ tags
 
 # .lock
 *.lock
+=======
+en_*
+test
+train
+val
+validation
+**/dir
+.env
+**/.ipynb_checkpoints/**
+**/__pycache__/**
+>>>>>>> collaborator/main
