@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Improving Long Document Topic Segmentation Models With Enhanced Coherence Modeling
 
 The official repository of our EMNLP 2023 paper "**Improving Long Document Topic Segmentation Models With Enhanced Coherence Modeling**".
@@ -72,4 +71,3 @@ Licensed under the [Apache License 2.0](https://github.com/alibaba-damo-academy/
 Residência Tecnológica em 2023
 
 Time 6 - Projeto: Segmentação textual automática baseada em tópicos
->>>>>>> collaborator/main
