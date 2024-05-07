@@ -3,6 +3,10 @@ import os
 import json
 import configparser
 import argparse
+import nltk
+nltk.download('punkt')
+nltk.download('floresta')  # Download Portuguese corpora if not already downloaded
+nltk.download('machado')   # Download Portuguese corpora if not already downloaded
 
 from tqdm import tqdm
 from nltk.tokenize import sent_tokenize
@@ -17,16 +21,33 @@ sec_flag = "========"
 
 
 def tokenize_method(sec_text):
-    # get paragraphs
+    # Obter parágrafos
     sec_paragraphs = list(filter(lambda x: x != '', sec_text.split("\n")))
-    # tokenized to sentences by nltk
-    sec_sents = [sent_tokenize(p) for p in sec_paragraphs]
-    sec_sent_labels = [[-100] * (len(p_sents) - 1) + [0] if len(p_sents) >= 1 else [] for p_sents in sec_sents]
 
-    # label of final sentence of topic is 1, final sentence of each paragraph is 0, other sentences is -100
+    # Tokenizar em sentenças usando NLTK
+    sec_sents = [sent_tokenize(p, language='portuguese') for p in sec_paragraphs]
+
+    # Atribuir rótulos às sentenças
+    sec_sent_labels = []
+    for p_sents in sec_sents:
+        if len(p_sents) > 1:
+            # Sentenças não finais do parágrafo recebem rótulo -100
+            p_labels = [-100] * (len(p_sents) - 1)
+            # Última sentença do parágrafo recebe rótulo 0
+            p_labels.append(0)
+            sec_sent_labels.extend(p_labels)
+        elif len(p_sents) == 1:
+            # Única sentença do parágrafo recebe rótulo 1
+            sec_sent_labels.append(0)
+
+    # Verificar se há pelo menos uma sentença para atribuir rótulo 1
+    if sec_sent_labels:
+        # Última sentença do texto recebe rótulo 1
+        sec_sent_labels[-1] = 1
+
+    # "Achatando" as listas de sentenças
     sec_sents = sum(sec_sents, [])
-    sec_sent_labels = sum(sec_sent_labels, [])  # convert to 1-d list
-    sec_sent_labels[-1] = 1
+    sec_sent_labels = sum(sec_sent_labels, [])
 
     return sec_sents, sec_sent_labels
 
@@ -44,7 +65,7 @@ def process_wiki_section_subset(train_file, dev_file, test_file, out_folder):
         topic_cnt = 0
         out_file = os.path.join(out_folder, mode + ".jsonl")
         res_examples = []
-        with open(file_, "r") as f:
+        with open(file_, "r", encoding='utf-8') as f:
             data = json.load(f)
             for example_id, example in enumerate(data):
                 text, annotations = example["text"], example["annotations"]
@@ -77,9 +98,9 @@ def process_wiki_section_subset(train_file, dev_file, test_file, out_folder):
                     "section_topic_labels": section_topic_labels,
                     "sentence_topic_labels": sentence_topic_labels,
                 }
-                res_examples.append(json.dumps(json_example) + "\n")
+                res_examples.append(json.dumps(json_example, ensure_ascii=False) + "\n")
 
-        with open(out_file, "w") as f:
+        with open(out_file, "w", encoding='utf-8') as f:
             f.writelines(res_examples)
         doc_cnt = len(res_examples)
 
@@ -99,11 +120,11 @@ def merge_wiki_section(out_folder, disease_mode_examples, city_mode_examples):
     wiki_section_dev_file = os.path.join(out_folder, "dev.jsonl")
     wiki_section_test_file = os.path.join(out_folder, "test.jsonl")
 
-    with open(wiki_section_train_file, "w") as f:
+    with open(wiki_section_train_file, "w", encoding='utf-8') as f:
         f.writelines(disease_mode_examples["train"] + city_mode_examples["train"])
-    with open(wiki_section_dev_file, "w") as f:
+    with open(wiki_section_dev_file, "w", encoding='utf-8') as f:
         f.writelines(disease_mode_examples["dev"] + city_mode_examples["dev"])
-    with open(wiki_section_test_file, "w") as f:
+    with open(wiki_section_test_file, "w", encoding='utf-8') as f:
         f.writelines(disease_mode_examples["test"] + city_mode_examples["test"])
 
 
@@ -137,7 +158,7 @@ def process_wiki_folder(folder, out_file):
     for file_ in tqdm(all_files):
         # get sections sentences and labels
         sentences, labels = [], []
-        with open(file_, "r") as f:
+        with open(file_, "r", encoding='utf-8') as f:
             lines = f.readlines()
             sec_flag_indices = []
             for i, line in enumerate(lines):
@@ -164,7 +185,7 @@ def process_wiki_folder(folder, out_file):
         }
         examples.append(json.dumps(example) + "\n")
     print("len(examples): ", len(examples))
-    with open(out_file, "w") as f:
+    with open(out_file, "w", encoding='utf-8') as f:
         f.writelines(examples)
 
 
@@ -186,9 +207,9 @@ def process_wiki_elements(data_folder, out_folder):
     seg_file = os.path.join(data_folder, "wikielements.segmenttitles")
     out_file = os.path.join(out_folder, "test.jsonl")
 
-    with open(seg_file, "r") as f:
+    with open(seg_file, "r", encoding='utf-8') as f:
         seg_lines = f.readlines()
-    with open(text_file, "r") as f:
+    with open(text_file, "r", encoding='utf-8') as f:
         para_lines = f.readlines()
     assert len(seg_lines) == len(para_lines)
 
@@ -219,7 +240,7 @@ def process_wiki_elements(data_folder, out_folder):
             "labels": seq_topic_labels,
         }
 
-    with open(out_file, "w") as f:
+    with open(out_file, "w", encoding='utf-8') as f:
         for doc_index in doc_indices:
             f.write(json.dumps(doc_dict[doc_index]["topic_info"]) + "\n")
 
