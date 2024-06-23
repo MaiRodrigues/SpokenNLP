@@ -46,7 +46,7 @@ Depois, execute bash run_inference.py
 # Licença
 
 Licenciado sob a [Apache License 2.0](https://github.com/alibaba-damo-academy/SpokenNLP/blob/main/LICENSE). Este projeto contém vários componentes de terceiros sob outras licenças de código aberto.
-=======
+
 # Projeto: Segmentação textual automática
 
 Residência Tecnológica em 2023
