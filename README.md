@@ -13,8 +13,14 @@ Este modelo deve ser utilizado para segmentação de texto baseada em tópicos o
 
 ## Arquiteturas
 
-- **neuralmind/bert-base-portuguese-cased**:         Arq: BERT-Base        Layers: 12         Parâmetros: 110M
-- **neuralmind/bert-large-portuguese-cased**:        Arq: BERT-Large       Layers: 24         Parâmetros: 335M
+- **neuralmind/bert-base-portuguese-cased**:
+-  BERT-Base
+-  Layers: 12
+-  Parâmetros: 110M
+- **neuralmind/bert-large-portuguese-cased**:
+- Arq: BERT-Large
+- Layers: 24
+- Parâmetros: 335M
 
 ## Preparação do Ambiente
 
