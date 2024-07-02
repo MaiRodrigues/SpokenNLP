@@ -21,33 +21,19 @@ sec_flag = "========"
 
 
 def tokenize_method(sec_text):
-    # Obter parágrafos
+    # get paragraphscd
     sec_paragraphs = list(filter(lambda x: x != '', sec_text.split("\n")))
-
-    # Tokenizar em sentenças usando NLTK
+    # tokenized to sentences by nltk
     sec_sents = [sent_tokenize(p, language='portuguese') for p in sec_paragraphs]
+    sec_sent_labels = [[-100] * (len(p_sents) - 1) + [0] if len(p_sents) >= 1 else [] for p_sents in sec_sents]
 
-    # Atribuir rótulos às sentenças
-    sec_sent_labels = []
-    for p_sents in sec_sents:
-        if len(p_sents) > 1:
-            # Sentenças não finais do parágrafo recebem rótulo -100
-            p_labels = [-100] * (len(p_sents) - 1)
-            # Última sentença do parágrafo recebe rótulo 0
-            p_labels.append(0)
-            sec_sent_labels.extend(p_labels)
-        elif len(p_sents) == 1:
-            # Única sentença do parágrafo recebe rótulo 1
-            sec_sent_labels.append(0)
-
-    # Verificar se há pelo menos uma sentença para atribuir rótulo 1
-    if sec_sent_labels:
-        # Última sentença do texto recebe rótulo 1
-        sec_sent_labels[-1] = 1
-
-    # "Achatando" as listas de sentenças
+    # label of final sentence of topic is 1, final sentence of each paragraph is 0, other sentences are -100
     sec_sents = sum(sec_sents, [])
-    sec_sent_labels = sum(sec_sent_labels, [])
+    sec_sent_labels = sum(sec_sent_labels, [])  # convert to 1-d list
+
+    # Check if sec_sent_labels is not empty before assigning the label
+    if sec_sent_labels:
+        sec_sent_labels[-1] = 1
 
     return sec_sents, sec_sent_labels
 
