@@ -133,7 +133,11 @@ def main():
 
     cur_file_path = os.path.abspath(__file__)
     data_dir = os.path.join(os.path.dirname(cur_file_path), "../data/{}".format(dataset_name))        
-    
+
+    """
+    Carrega conjuntos de dados usando load_dataset da biblioteca datasets da Hugging Face, especificando nomes de conjuntos de dados, 
+    configurações, diretórios e diretórios de cache.
+    """
     raw_datasets = load_dataset(
         data_args.dataset_name,
         data_args.dataset_config_name,
@@ -149,13 +153,13 @@ def main():
     else:
         column_names = raw_datasets["test"].column_names
     features = raw_datasets["test"].features
-    
+
+    #  define nomes para as colunas que serão usadas no processamento dos dados:
     label_column_name = "labels"
     context_column_name = "sentences"
     example_id_column_name = "example_id"
 
-    # In the event the labels are not a `Sequence[ClassLabel]`, we will need to go through the dataset to get the
-    # unique labels.
+    #  define nomes para as colunas que serão usadas no processamento dos dados:
     def get_label_list(labels):
         unique_labels = set()
         for label in labels:
@@ -180,7 +184,7 @@ def main():
     print("label_to_id: ", label_to_id)     # {'B-EOP': 0, 'O': 1}
     num_labels = len(label_list)
 
-    # Load pretrained model and tokenizer
+    # Este trecho de código carrega um modelo pré-treinado e seu tokenizador associado utilizando a biblioteca Transformers da Hugging Face.
     #
     # Distributed training:
     # The .from_pretrained methods guarantee that only one local process can concurrently
@@ -196,81 +200,39 @@ def main():
     config.update(model_args.__dict__)
     config.num_tssp_labels = 3
     print("config: ", config)
-    
-    tokenizer_name_or_path = model_args.tokenizer_name if model_args.tokenizer_name else model_args.model_name_or_path
-    if config.model_type in {"bloom", "gpt2", "roberta"}:
-        tokenizer = AutoTokenizer.from_pretrained(
-            tokenizer_name_or_path,
-            cache_dir=model_args.cache_dir,
-            use_fast=True,
-            revision=model_args.model_revision,
-            use_auth_token=True if model_args.use_auth_token else None,
-            add_prefix_space=True,
-        )
-    elif "longformer" in model_args.model_name_or_path:
-        tokenizer = LongformerTokenizerFast.from_pretrained(
-            model_args.tokenizer_name if model_args.tokenizer_name else model_args.model_name_or_path,
-            use_fast=True,
-            use_auth_token=False,
-            add_prefix_space=True,
-        )
-    else:
-        tokenizer = AutoTokenizer.from_pretrained(
-            tokenizer_name_or_path,
-            cache_dir=model_args.cache_dir,
-            use_fast=True,
-            revision=model_args.model_revision,
-            use_auth_token=True if model_args.use_auth_token else None,
-        )
 
-    model_type = None
-    if "longformer".lower() in model_args.model_name_or_path.lower():
-        model_type = "longformer"
-        from models.longformer_for_ts import LongformerWithDAForSentenceLabelingTopicSegmentation
-        model = LongformerWithDAForSentenceLabelingTopicSegmentation.from_pretrained(
-            model_args.model_name_or_path,
-            config = config,
-            cache_dir = model_args.cache_dir,
-            revision = model_args.model_revision,
-            use_auth_token = True if model_args.use_auth_token else None,
+    # Este código carrega o tokenizador associado ao modelo pré-treinado
+
+    tokenizer_name_or_path = model_args.tokenizer_name if model_args.tokenizer_name else model_args.model_name_or_path
+
+    if "bert" in model_args.model_name_or_path.lower():
+        tokenizer = AutoTokenizer.from_pretrained(
+            tokenizer_name_or_path,
+            cache_dir=model_args.cache_dir,
+            use_fast=True,
+            revision=model_args.model_revision,
+            use_auth_token=True if model_args.use_auth_token else None,
         )
-    elif "bigbird".lower() in model_args.model_name_or_path.lower():
-        model_type = "bigbird"
-        from models.bigbird_for_ts import BigBirdWithDAForSentenceLabelingTopicSegmentation
-        model = BigBirdWithDAForSentenceLabelingTopicSegmentation.from_pretrained(
-            model_args.model_name_or_path,
-            config = config,
-            cache_dir = model_args.cache_dir,
-            revision = model_args.model_revision,
-            use_auth_token = True if model_args.use_auth_token else None,
-        )
-    elif "bert" in model_args.model_name_or_path.lower():
         model_type = "bert"
         from models.bert_for_ts import BertWithDAForSentenceLabelingTopicSegmentation
         model = BertWithDAForSentenceLabelingTopicSegmentation.from_pretrained(
             model_args.model_name_or_path,
-            config = config,
-            cache_dir = model_args.cache_dir,
-            revision = model_args.model_revision,
-            use_auth_token = True if model_args.use_auth_token else None,
+            config=config,
+            cache_dir=model_args.cache_dir,
+            revision=model_args.model_revision,
+            use_auth_token=True if model_args.use_auth_token else None,
             ignore_mismatched_sizes=True,
         )
-    elif "electra" in model_args.model_name_or_path.lower():
-        model_type = "electra"
-        from models.electra_for_ts import ElectraWithDAForSentenceLabelingTopicSegmentation
-        model = ElectraWithDAForSentenceLabelingTopicSegmentation.from_pretrained(
-            model_args.model_name_or_path,
-            config = config,
-            cache_dir = model_args.cache_dir,
-            revision = model_args.model_revision,
-            use_auth_token = True if model_args.use_auth_token else None,
-        )
     else:
-        raise ValueError("%s not supported currently" % model_args.model_name_or_path.lower())
+        raise ValueError("Model name must contain 'bert' or 'longformer'")
 
     print("model_type: ", model_type)
 
-    # Tokenizer check: this script requires a fast tokenizer.
+    # Este trecho de código faz várias verificações e configurações relacionadas ao tokenizador:
+
+    # este código garante que o tokenizador esteja configurado corretamente para ser usado com o modelo específico e o comprimento máximo da sequência
+    # especificado. Ele também faz ajustes necessários para garantir que as operações de tokenização funcionem corretamente durante o treinamento,
+    # avaliação ou teste do modelo.
     if not isinstance(tokenizer, PreTrainedTokenizerFast):
         raise ValueError(
             "This example script only works for models that have a fast tokenizer. Checkout the big table of models at"
