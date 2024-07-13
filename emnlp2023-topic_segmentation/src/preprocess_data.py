@@ -169,7 +169,7 @@ def process_wiki_folder(folder, out_file):
             "sentences": sentences,
             "labels": labels,
         }
-        examples.append(json.dumps(example) + "\n")
+        examples.append(json.dumps(example, ensure_ascii=False) + "\n")
     print("len(examples): ", len(examples))
     with open(out_file, "w", encoding='utf-8') as f:
         f.writelines(examples)
